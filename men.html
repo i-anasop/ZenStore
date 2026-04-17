@@ -3,9 +3,9 @@
 <head>
     <title>Zen | Products</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link rel="icon" href="/Pictures/logo.jpg" type="img/svg">
-    <link rel="stylesheet" href="/1.Header-Footer/style.css">
-    <script src="/Chat-Bot/bot.js"></script>
+    <link rel="icon" href="assets/images/logo.jpg" type="img/svg">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/bot.js"></script>
 <style>
 
 body {
@@ -207,27 +207,27 @@ button:hover {
  <!-- Header -->
  <header class="transparent-header">
     <div class="header-container">
-        <a href="01.home.html"> 
+        <a href="index.html"> 
         <div class="hlogo">
-        <img src="/Pictures/logo.jpg" type="img/svg" alt="Company Logo">
+        <img src="assets/images/logo.jpg" type="img/svg" alt="Company Logo">
         </div>
         <p id="pp">Zen Store</p></a>  
         <div class="nav-links">
-        <a href="/01.home.html">Home</a>
+        <a href="index.html">Home</a>
         <div class="product-dropdown">
             <a href="#">Product</a>
             <ul class="product-menu">
-                <li><a href="/02.men.html">Men</a></li>
-                <li><a href="/02.women.html">Women</a></li>
-                <li><a href="/02.sports.html">Sports</a></li>
+                <li><a href="men.html">Men</a></li>
+                <li><a href="women.html">Women</a></li>
+                <li><a href="sports.html">Sports</a></li>
             </ul>
         </div>
-        <a href="/03.cart.html">Cart</a>
+        <a href="cart.html">Cart</a>
         </div>
         <div class="navsym">
             
             <div class="profile-dropdown">
-                <a href="/08.profile.html"><i class="fas fa-user"></i></a>
+                <a href="profile.html"><i class="fas fa-user"></i></a>
                 </ul>
             </div>
         </div>
@@ -242,7 +242,7 @@ button:hover {
 <div class="discount-banner">
     <div class="discount-content">
         <span class="icon">⚡</span> LIMITED-TIME OFFER! Get <strong>30% OFF</strong> on all products, Shop now and save big! 🛍️  
-        <a href="02.men.html" class="cta-btn">Shop Now →</a>
+        <a href="men.html" class="cta-btn">Shop Now →</a>
     </div>
 </div>
 
@@ -274,52 +274,52 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 const categories = {
     "Formal Shoes": [
-        { name: "Leather Formal Shoes", img: "/1.Products-htmls/All Products/Men/Formal Shoes/01.png", price: "PKR 12600" },
-        { name: "Black Dress Shoes", img: "/1.Products-htmls/All Products/Men/Formal Shoes/02.png", price: "PKR 14000" },
-        { name: "Brown Leather Loafers", img: "/1.Products-htmls/All Products/Men/Formal Shoes/03.png", price: "PKR 15400" },
-        { name: "Oxford Formal Shoes", img: "/1.Products-htmls/All Products/Men/Formal Shoes/04.png", price: "PKR 16800" },
-        { name: "Classic Brown Formal", img: "/1.Products-htmls/All Products/Men/Formal Shoes/05.png", price: "PKR 18200" },
-        { name: "Black Leather Slip", img: "/1.Products-htmls/All Products/Men/Formal Shoes/06.png", price: "PKR 19600" }
+        { name: "Leather Formal Shoes", img: "assets/images/products/men/formal-shoes/01.png", price: "PKR 12600" },
+        { name: "Black Dress Shoes", img: "assets/images/products/men/formal-shoes/02.png", price: "PKR 14000" },
+        { name: "Brown Leather Loafers", img: "assets/images/products/men/formal-shoes/03.png", price: "PKR 15400" },
+        { name: "Oxford Formal Shoes", img: "assets/images/products/men/formal-shoes/04.png", price: "PKR 16800" },
+        { name: "Classic Brown Formal", img: "assets/images/products/men/formal-shoes/05.png", price: "PKR 18200" },
+        { name: "Black Leather Slip", img: "assets/images/products/men/formal-shoes/06.png", price: "PKR 19600" }
     ],
     "Joggers": [
-        { name: "Sporty Joggers", img: "/1.Products-htmls/All Products/Men/Joggers/01.png", price: "PKR 8400" },
-        { name: "Comfort Jogging Pants", img: "/1.Products-htmls/All Products/Men/Joggers/02.png", price: "PKR 9800" },
-        { name: "Casual Joggers", img: "/1.Products-htmls/All Products/Men/Joggers/03.png", price: "PKR 11200" },
-        { name: "Grey Jogging Pants", img: "/1.Products-htmls/All Products/Men/Joggers/04.png", price: "PKR 12600" },
-        { name: "Tech Joggers", img: "/1.Products-htmls/All Products/Men/Joggers/05.png", price: "PKR 14000" },
-        { name: "Slim Fit Joggers", img: "/1.Products-htmls/All Products/Men/Joggers/06.png", price: "PKR 15400" }
+        { name: "Sporty Joggers", img: "assets/images/products/men/joggers/01.png", price: "PKR 8400" },
+        { name: "Comfort Jogging Pants", img: "assets/images/products/men/joggers/02.png", price: "PKR 9800" },
+        { name: "Casual Joggers", img: "assets/images/products/men/joggers/03.png", price: "PKR 11200" },
+        { name: "Grey Jogging Pants", img: "assets/images/products/men/joggers/04.png", price: "PKR 12600" },
+        { name: "Tech Joggers", img: "assets/images/products/men/joggers/05.png", price: "PKR 14000" },
+        { name: "Slim Fit Joggers", img: "assets/images/products/men/joggers/06.png", price: "PKR 15400" }
     ],
     "Sneakers": [
-        { name: "Running Sneakers", img: "/1.Products-htmls/All Products/Men/Sneakers/01.png", price: "PKR 16800" },
-        { name: "Sports Sneakers", img: "/1.Products-htmls/All Products/Men/Sneakers/02.png", price: "PKR 18200" },
-        { name: "Casual Sneakers", img: "/1.Products-htmls/All Products/Men/Sneakers/03.png", price: "PKR 19600" },
-        { name: "Streetwear Sneakers", img: "/1.Products-htmls/All Products/Men/Sneakers/04.png", price: "PKR 21000" },
-        { name: "High-Top Sneakers", img: "/1.Products-htmls/All Products/Men/Sneakers/05.png", price: "PKR 22400" },
-        { name: "Classic Sneakers", img: "/1.Products-htmls/All Products/Men/Sneakers/06.png", price: "PKR 23800" }
+        { name: "Running Sneakers", img: "assets/images/products/men/sneakers/01.png", price: "PKR 16800" },
+        { name: "Sports Sneakers", img: "assets/images/products/men/sneakers/02.png", price: "PKR 18200" },
+        { name: "Casual Sneakers", img: "assets/images/products/men/sneakers/03.png", price: "PKR 19600" },
+        { name: "Streetwear Sneakers", img: "assets/images/products/men/sneakers/04.png", price: "PKR 21000" },
+        { name: "High-Top Sneakers", img: "assets/images/products/men/sneakers/05.png", price: "PKR 22400" },
+        { name: "Classic Sneakers", img: "assets/images/products/men/sneakers/06.png", price: "PKR 23800" }
     ],
     "Boots": [
-        { name: "Leather Boots", img: "/1.Products-htmls/All Products/Men/Boots/01.png", price: "PKR 23800" },
-        { name: "Combat Boots", img: "/1.Products-htmls/All Products/Men/Boots/02.png", price: "PKR 25200" },
-        { name: "Chelsea Boots", img: "/1.Products-htmls/All Products/Men/Boots/03.png", price: "PKR 26600" },
-        { name: "Winter Boots", img: "/1.Products-htmls/All Products/Men/Boots/04.png", price: "PKR 28000" },
-        { name: "Tactical Boots", img: "/1.Products-htmls/All Products/Men/Boots/05.png", price: "PKR 29400" },
-        { name: "Hiking Boots", img: "/1.Products-htmls/All Products/Men/Boots/06.png", price: "PKR 30800" }
+        { name: "Leather Boots", img: "assets/images/products/men/boots/01.png", price: "PKR 23800" },
+        { name: "Combat Boots", img: "assets/images/products/men/boots/02.png", price: "PKR 25200" },
+        { name: "Chelsea Boots", img: "assets/images/products/men/boots/03.png", price: "PKR 26600" },
+        { name: "Winter Boots", img: "assets/images/products/men/boots/04.png", price: "PKR 28000" },
+        { name: "Tactical Boots", img: "assets/images/products/men/boots/05.png", price: "PKR 29400" },
+        { name: "Hiking Boots", img: "assets/images/products/men/boots/06.png", price: "PKR 30800" }
     ],
     "Loofers": [
-        { name: "Leather Loofers", img: "/1.Products-htmls/All Products/Men/Loofers/01.png", price: "PKR 11200" },
-        { name: "Casual Loofers", img: "/1.Products-htmls/All Products/Men/Loofers/02.png", price: "PKR 12600" },
-        { name: "Slip-On Loofers", img: "/1.Products-htmls/All Products/Men/Loofers/03.png", price: "PKR 14000" },
-        { name: "Comfort Loofers", img: "/1.Products-htmls/All Products/Men/Loofers/04.png", price: "PKR 15400" },
-        { name: "Fashion Loofers", img: "/1.Products-htmls/All Products/Men/Loofers/05.png", price: "PKR 16800" },
-        { name: "Formal Loofers", img: "/1.Products-htmls/All Products/Men/Loofers/06.png", price: "PKR 18200" }
+        { name: "Leather Loofers", img: "assets/images/products/men/loofers/01.png", price: "PKR 11200" },
+        { name: "Casual Loofers", img: "assets/images/products/men/loofers/02.png", price: "PKR 12600" },
+        { name: "Slip-On Loofers", img: "assets/images/products/men/loofers/03.png", price: "PKR 14000" },
+        { name: "Comfort Loofers", img: "assets/images/products/men/loofers/04.png", price: "PKR 15400" },
+        { name: "Fashion Loofers", img: "assets/images/products/men/loofers/05.png", price: "PKR 16800" },
+        { name: "Formal Loofers", img: "assets/images/products/men/loofers/06.png", price: "PKR 18200" }
     ],
     "Slippers": [
-        { name: "Comfort Slippers", img: "/1.Products-htmls/All Products/Men/Slippers/01.png", price: "PKR 7000" },
-        { name: "Cotton Slippers", img: "/1.Products-htmls/All Products/Men/Slippers/02.png", price: "PKR 8400" },
-        { name: "Summer Slippers", img: "/1.Products-htmls/All Products/Men/Slippers/03.png", price: "PKR 9800" },
-        { name: "Leather Slippers", img: "/1.Products-htmls/All Products/Men/Slippers/04.png", price: "PKR 11200" },
-        { name: "Slip-on Slippers", img: "/1.Products-htmls/All Products/Men/Slippers/05.png", price: "PKR 12600" },
-        { name: "Fashion Slippers", img: "/1.Products-htmls/All Products/Men/Slippers/06.png", price: "PKR 14000" }
+        { name: "Comfort Slippers", img: "assets/images/products/men/slippers/01.png", price: "PKR 7000" },
+        { name: "Cotton Slippers", img: "assets/images/products/men/slippers/02.png", price: "PKR 8400" },
+        { name: "Summer Slippers", img: "assets/images/products/men/slippers/03.png", price: "PKR 9800" },
+        { name: "Leather Slippers", img: "assets/images/products/men/slippers/04.png", price: "PKR 11200" },
+        { name: "Slip-on Slippers", img: "assets/images/products/men/slippers/05.png", price: "PKR 12600" },
+        { name: "Fashion Slippers", img: "assets/images/products/men/slippers/06.png", price: "PKR 14000" }
     ]
 };
 
@@ -388,14 +388,14 @@ function attachCartListeners() {
             localStorage.setItem("selectedProduct", JSON.stringify(productDetails));
 
             // Redirect to the product details page
-            window.location.href = "02.p_descryption.html";
+            window.location.href = "product.html";
         };
     });
 }
 
 // Function to animate product moving to cart
 function animateCart(productImageSrc) {
-    const cartIcon = document.querySelector('.nav-links a[href="/03.cart.html"] img');
+    const cartIcon = document.querySelector('.nav-links a[href="cart.html"] img');
     if (!cartIcon) return;
 
     let clonedImage = document.createElement("img");

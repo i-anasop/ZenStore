@@ -3,8 +3,8 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/1.Header-Footer/style.css">
-    <link rel="icon" href="/Pictures/logo.jpg" type="img/svg">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="icon" href="assets/images/logo.jpg" type="img/svg">
     <title>Zen Shoes - Checkout</title>
 <style>
         /* General Styling */
@@ -297,27 +297,27 @@
  <!-- Header -->
  <header class="transparent-header">
     <div class="header-container">
-        <a href="01.home.html"> 
+        <a href="index.html"> 
         <div class="hlogo">
-        <img src="/Pictures/logo.jpg" type="img/svg" alt="Company Logo">
+        <img src="assets/images/logo.jpg" type="img/svg" alt="Company Logo">
         </div>
         <p id="pp">Zen Store</p></a>  
         <div class="nav-links">
-        <a href="/01.home.html">Home</a>
+        <a href="index.html">Home</a>
         <div class="product-dropdown">
             <a href="#">Product</a>
             <ul class="product-menu">
-                <li><a href="/02.men.html">Men</a></li>
-                <li><a href="/02.women.html">Women</a></li>
-                <li><a href="/02.sports.html">Sports</a></li>
+                <li><a href="men.html">Men</a></li>
+                <li><a href="women.html">Women</a></li>
+                <li><a href="sports.html">Sports</a></li>
             </ul>
         </div>
-        <a href="/03.cart.html">Cart</a>
+        <a href="cart.html">Cart</a>
         </div>
         <div class="navsym">
             
             <div class="profile-dropdown">
-                <a href="/08.profile.html"><i class="fas fa-user"></i></a>
+                <a href="profile.html"><i class="fas fa-user"></i></a>
                 </ul>
             </div>
         </div>
@@ -327,7 +327,7 @@
     <div class="container">
     <div class="checkout-container">
         <div id="login">
-            <a href="05.login.html">Login</a>
+            <a href="login.html">Login</a>
         </div>
         <form id="checkout-form" action="/submit_checkout" method="POST">
             <div class="form-group">
@@ -392,11 +392,11 @@
                 <div class="payment-method">
                     <label>
                         <input type="radio" name="payment" value="EasyPaisa" required> EasyPaisa
-                        <img src="Pictures/Payment Pictures/2.jpg" alt="EasyPaisa" width="20px">
+                        <img src="assets/images/payments/2.jpg" alt="EasyPaisa" width="20px">
                     </label>
                     <label>
                         <input type="radio" name="payment" value="Cash on Delivery" required> Cash on Delivery
-                        <img src="Pictures/Payment Pictures/3.jpg" alt="Cash on Delivery" width="20px">
+                        <img src="assets/images/payments/3.jpg" alt="Cash on Delivery" width="20px">
                     </label>
                 </div>
             </div>
@@ -416,8 +416,8 @@
         <div class="footer-links">
             <h4>Quick Links</h4>
             <ul>
-            <li><a href="/01.home.html">Home</a></li>
-            <li><a href="/05.products.html">Products</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="men.html">Products</a></li>
             </ul>
         </div>
         <div class="footer-contact">
@@ -481,7 +481,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <button class="close-popup">&times;</button>
         <div class="popup-content">
             <h3>Complete Your Payment</h3>
-            <img src="Pictures/Payment Pictures/easy.jpg" alt="EasyPaisa Payment">
+            <img src="assets/images/payments/easy.jpg" alt="EasyPaisa Payment">
             <p><strong>Account Number:</strong> 0311-1234567 (Sample)</p><br>
             <p><strong>Total Amount:</strong> PKR ${totalPrice}</p><br> <!-- Display total price here -->
             <p>After making the payment, click "Payment Completed".</p><br> 
@@ -590,7 +590,7 @@ function showFinalPaymentStatus(status) {
     if (popup) {
         popup.innerHTML = ` 
             <div class="popup-content ${status === "Accepted" ? "success" : "failed"}">
-                <img src="${status === "Accepted" ? "/SVG/tick.svg" : "/SVG/cross.svg"}" 
+                <img src="${status === "Accepted" ? "assets/svg/tick.svg" : "assets/svg/cross.svg"}" 
                     class="status-icon" alt="Payment ${status}" />
                 <h2>${status === "Accepted" ? "Payment Successful!" : "Payment Unsuccessful"}</h2>
                 <p>${status === "Accepted" ? "Your payment has been approved." : "Your payment was rejected."}</p>
@@ -632,7 +632,7 @@ document.addEventListener("DOMContentLoaded", function () {
         checkoutForm.addEventListener("submit", function (event) {
             event.preventDefault();
             alert("You have to login first");
-            window.location.href = "05.login.html"; // Redirect to login page
+            window.location.href = "login.html"; // Redirect to login page
         });
     }
 });
@@ -658,7 +658,7 @@ document.addEventListener("DOMContentLoaded", function () {
         function showPopup(message) {
             saveFormData();
             if (confirm(message)) {
-                window.location.href = "07.checkout.html";
+                window.location.href = "checkout.html";
             }
         }
         
@@ -675,7 +675,7 @@ document.addEventListener("DOMContentLoaded", function () {
         checkoutForm.addEventListener("submit", function (event) {
             if (!localStorage.getItem("userEmail")) {
                 showPopup("You must log in first!");
-                window.location.href = "05.login.html";
+                window.location.href = "login.html";
                 event.preventDefault();
                 return;
             }

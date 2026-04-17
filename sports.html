@@ -3,9 +3,9 @@
 <head>
     <title>Zen | Products</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link rel="icon" href="/Pictures/logo.jpg" type="img/svg">
-    <link rel="stylesheet" href="/1.Header-Footer/style.css">
-    <script src="/Chat-Bot/bot.js"></script>
+    <link rel="icon" href="assets/images/logo.jpg" type="img/svg">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/bot.js"></script>
 <style>
 
 body {
@@ -210,27 +210,27 @@ button:hover {
  <!-- Header -->
  <header class="transparent-header">
     <div class="header-container">
-        <a href="01.home.html"> 
+        <a href="index.html"> 
         <div class="hlogo">
-        <img src="/Pictures/logo.jpg" type="img/svg" alt="Company Logo">
+        <img src="assets/images/logo.jpg" type="img/svg" alt="Company Logo">
         </div>
         <p id="pp">Zen Store</p></a>  
         <div class="nav-links">
-        <a href="/01.home.html">Home</a>
+        <a href="index.html">Home</a>
         <div class="product-dropdown">
             <a href="#">Product</a>
             <ul class="product-menu">
-                <li><a href="/02.men.html">Men</a></li>
-                <li><a href="/02.women.html">Women</a></li>
-                <li><a href="/02.sports.html">Sports</a></li>
+                <li><a href="men.html">Men</a></li>
+                <li><a href="women.html">Women</a></li>
+                <li><a href="sports.html">Sports</a></li>
             </ul>
         </div>
-        <a href="/03.cart.html">Cart</a>
+        <a href="cart.html">Cart</a>
         </div>
         <div class="navsym">
             
             <div class="profile-dropdown">
-                <a href="/08.profile.html"><i class="fas fa-user"></i></a>
+                <a href="profile.html"><i class="fas fa-user"></i></a>
                 </ul>
             </div>
         </div>
@@ -245,7 +245,7 @@ button:hover {
 <div class="discount-banner">
     <div class="discount-content">
         <span class="icon">⚡</span> LIMITED-TIME OFFER! Get <strong>30% OFF</strong> on all products, Shop now and save big! 🛍️  
-        <a href="02.men.html" class="cta-btn">Shop Now →</a>
+        <a href="men.html" class="cta-btn">Shop Now →</a>
     </div>
 </div>
 
@@ -276,21 +276,21 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 const categories = {
     "Running Shoes": [
-        { name: "Elite Running Shoes", img: "/1.Products-htmls/All Products/Sports/Running/01.png", price: "PKR 23800" },
-        { name: "Speedster Runners", img: "/1.Products-htmls/All Products/Sports/Running/02.png", price: "PKR 25200" },
-        { name: "Trail Running Shoes", img: "/1.Products-htmls/All Products/Sports/Running/03.png", price: "PKR 26600" },
-        { name: "Marathon Performance", img: "/1.Products-htmls/All Products/Sports/Running/04.png", price: "PKR 28000" },
-        { name: "Cushioned Running", img: "/1.Products-htmls/All Products/Sports/Running/05.png", price: "PKR 29400" },
-        { name: "Speed Runner Trainers", img: "/1.Products-htmls/All Products/Sports/Running/06.png", price: "PKR 30800" }
+        { name: "Elite Running Shoes", img: "assets/images/products/sports/running/01.png", price: "PKR 23800" },
+        { name: "Speedster Runners", img: "assets/images/products/sports/running/02.png", price: "PKR 25200" },
+        { name: "Trail Running Shoes", img: "assets/images/products/sports/running/03.png", price: "PKR 26600" },
+        { name: "Marathon Performance", img: "assets/images/products/sports/running/04.png", price: "PKR 28000" },
+        { name: "Cushioned Running", img: "assets/images/products/sports/running/05.png", price: "PKR 29400" },
+        { name: "Speed Runner Trainers", img: "assets/images/products/sports/running/06.png", price: "PKR 30800" }
     ],
 
     "Basketball Shoes": [
-        { name: "High Performax Basketball", img: "/1.Products-htmls/All Products/Sports/Basketball/01.png", price: "PKR 28000" },
-        { name: "Court King s", img: "/1.Products-htmls/All Products/Sports/Basketball/02.png", price: "PKR 29400" },
-        { name: "Fast Break Shoes", img: "/1.Products-htmls/All Products/Sports/Basketball/03.png", price: "PKR 30800" },
-        { name: "Air Dunk Basketball", img: "/1.Products-htmls/All Products/Sports/Basketball/04.png", price: "PKR 32200" },
-        { name: "Hoops Pro Shoes", img: "/1.Products-htmls/All Products/Sports/Basketball/05.png", price: "PKR 33600" },
-        { name: "Jump Boost", img: "/1.Products-htmls/All Products/Sports/Basketball/06.png", price: "PKR 35000" }
+        { name: "High Performax Basketball", img: "assets/images/products/sports/basketball/01.png", price: "PKR 28000" },
+        { name: "Court King s", img: "assets/images/products/sports/basketball/02.png", price: "PKR 29400" },
+        { name: "Fast Break Shoes", img: "assets/images/products/sports/basketball/03.png", price: "PKR 30800" },
+        { name: "Air Dunk Basketball", img: "assets/images/products/sports/basketball/04.png", price: "PKR 32200" },
+        { name: "Hoops Pro Shoes", img: "assets/images/products/sports/basketball/05.png", price: "PKR 33600" },
+        { name: "Jump Boost", img: "assets/images/products/sports/basketball/06.png", price: "PKR 35000" }
     ]
 };
 
@@ -357,7 +357,7 @@ const categories = {
             localStorage.setItem("selectedProduct", JSON.stringify(productDetails));
 
             // Redirect to the product details page
-            window.location.href = "02.p_descryption.html";
+            window.location.href = "product.html";
         };
     });
 }

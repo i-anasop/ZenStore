@@ -3,9 +3,9 @@
 <head>
     <title>Zen | Products</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link rel="icon" href="/Pictures/logo.jpg" type="img/svg">
-    <link rel="stylesheet" href="/1.Header-Footer/style.css">
-    <script src="/Chat-Bot/bot.js"></script>
+    <link rel="icon" href="assets/images/logo.jpg" type="img/svg">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/bot.js"></script>
 <style>
 
 body {
@@ -209,27 +209,27 @@ button:hover {
  <!-- Header -->
  <header class="transparent-header">
     <div class="header-container">
-        <a href="01.home.html"> 
+        <a href="index.html"> 
         <div class="hlogo">
-        <img src="/Pictures/logo.jpg" type="img/svg" alt="Company Logo">
+        <img src="assets/images/logo.jpg" type="img/svg" alt="Company Logo">
         </div>
         <p id="pp">Zen Store</p></a>  
         <div class="nav-links">
-        <a href="/01.home.html">Home</a>
+        <a href="index.html">Home</a>
         <div class="product-dropdown">
             <a href="#">Product</a>
             <ul class="product-menu">
-                <li><a href="/02.men.html">Men</a></li>
-                <li><a href="/02.women.html">Women</a></li>
-                <li><a href="/02.sports.html">Sports</a></li>
+                <li><a href="men.html">Men</a></li>
+                <li><a href="women.html">Women</a></li>
+                <li><a href="sports.html">Sports</a></li>
             </ul>
         </div>
-        <a href="/03.cart.html">Cart</a>
+        <a href="cart.html">Cart</a>
         </div>
         <div class="navsym">
             
             <div class="profile-dropdown">
-                <a href="/08.profile.html"><i class="fas fa-user"></i></a>
+                <a href="profile.html"><i class="fas fa-user"></i></a>
                 </ul>
             </div>
         </div>
@@ -244,7 +244,7 @@ button:hover {
 <div class="discount-banner">
     <div class="discount-content">
         <span class="icon">⚡</span> LIMITED-TIME OFFER! Get <strong>30% OFF</strong> on all products, Shop now and save big! 🛍️  
-        <a href="02.men.html" class="cta-btn">Shop Now →</a>
+        <a href="men.html" class="cta-btn">Shop Now →</a>
     </div>
 </div>
 
@@ -275,44 +275,44 @@ button:hover {
 });
    const categories = {
     "Fancy Shoes": [
-        { name: "Glamorous Heels", img: "/1.Products-htmls/All Products/Women/Fancy Shoes/01.png", price: "PKR 12600" },
-        { name: "Sparkly Stilettos", img: "/1.Products-htmls/All Products/Women/Fancy Shoes/02.png", price: "PKR 14000" },
-        { name: "Chic Platform Heels", img: "/1.Products-htmls/All Products/Women/Fancy Shoes/03.png", price: "PKR 15400" },
-        { name: "Elegant Slingbacks", img: "/1.Products-htmls/All Products/Women/Fancy Shoes/04.png", price: "PKR 16800" },
-        { name: "Classic Pumps", img: "/1.Products-htmls/All Products/Women/Fancy Shoes/05.png", price: "PKR 18200" },
-        { name: "Luxe Peep-Toe Shoes", img: "/1.Products-htmls/All Products/Women/Fancy Shoes/06.png", price: "PKR 19600" }
+        { name: "Glamorous Heels", img: "assets/images/products/women/fancy-shoes/01.png", price: "PKR 12600" },
+        { name: "Sparkly Stilettos", img: "assets/images/products/women/fancy-shoes/02.png", price: "PKR 14000" },
+        { name: "Chic Platform Heels", img: "assets/images/products/women/fancy-shoes/03.png", price: "PKR 15400" },
+        { name: "Elegant Slingbacks", img: "assets/images/products/women/fancy-shoes/04.png", price: "PKR 16800" },
+        { name: "Classic Pumps", img: "assets/images/products/women/fancy-shoes/05.png", price: "PKR 18200" },
+        { name: "Luxe Peep-Toe Shoes", img: "assets/images/products/women/fancy-shoes/06.png", price: "PKR 19600" }
     ],
     "Flats": [
-        { name: "Cute Ballet Flats", img: "/1.Products-htmls/All Products/Women/Flats/01.png", price: "PKR 8400" },
-        { name: "Comfy Slip-On Flats", img: "/1.Products-htmls/All Products/Women/Flats/02.png", price: "PKR 9800" },
-        { name: "Boho Chic Flats", img: "/1.Products-htmls/All Products/Women/Flats/03.png", price: "PKR 11200" },
-        { name: "Sparkling Flat Sandals", img: "/1.Products-htmls/All Products/Women/Flats/04.png", price: "PKR 12600" },
-        { name: "Floral Print Flats", img: "/1.Products-htmls/All Products/Women/Flats/05.png", price: "PKR 14000" },
-        { name: "Trendy Espadrille Flats", img: "/1.Products-htmls/All Products/Women/Flats/06.png", price: "PKR 15400" }
+        { name: "Cute Ballet Flats", img: "assets/images/products/women/flats/01.png", price: "PKR 8400" },
+        { name: "Comfy Slip-On Flats", img: "assets/images/products/women/flats/02.png", price: "PKR 9800" },
+        { name: "Boho Chic Flats", img: "assets/images/products/women/flats/03.png", price: "PKR 11200" },
+        { name: "Sparkling Flat Sandals", img: "assets/images/products/women/flats/04.png", price: "PKR 12600" },
+        { name: "Floral Print Flats", img: "assets/images/products/women/flats/05.png", price: "PKR 14000" },
+        { name: "Trendy Espadrille Flats", img: "assets/images/products/women/flats/06.png", price: "PKR 15400" }
     ],
     "Joggers": [
-        { name: "Cozy Jogging Pants", img: "/1.Products-htmls/All Products/Women/Joggers/01.png", price: "PKR 8400" },
-        { name: "Luxe Sweatpants", img: "/1.Products-htmls/All Products/Women/Joggers/02.png", price: "PKR 9800" },
-        { name: "Comfy Athleisure Joggers", img: "/1.Products-htmls/All Products/Women/Joggers/03.png", price: "PKR 11200" },
-        { name: "Casual Joggers", img: "/1.Products-htmls/All Products/Women/Joggers/04.png", price: "PKR 12600" },
-        { name: "Relaxed Fit Joggers", img: "/1.Products-htmls/All Products/Women/Joggers/05.png", price: "PKR 14000" },
-        { name: "Slim Fit Joggers", img: "/1.Products-htmls/All Products/Women/Joggers/06.png", price: "PKR 15400" }
+        { name: "Cozy Jogging Pants", img: "assets/images/products/women/joggers/01.png", price: "PKR 8400" },
+        { name: "Luxe Sweatpants", img: "assets/images/products/women/joggers/02.png", price: "PKR 9800" },
+        { name: "Comfy Athleisure Joggers", img: "assets/images/products/women/joggers/03.png", price: "PKR 11200" },
+        { name: "Casual Joggers", img: "assets/images/products/women/joggers/04.png", price: "PKR 12600" },
+        { name: "Relaxed Fit Joggers", img: "assets/images/products/women/joggers/05.png", price: "PKR 14000" },
+        { name: "Slim Fit Joggers", img: "assets/images/products/women/joggers/06.png", price: "PKR 15400" }
     ],
     "Sandals": [
-        { name: "Elegant Flat", img: "/1.Products-htmls/All Products/Women/Sandals/01.png", price: "PKR 7000" },
-        { name: "Sparkly Toe-Post", img: "/1.Products-htmls/All Products/Women/Sandals/02.png", price: "PKR 8400" },
-        { name: "Chic Ankle Strap", img: "/1.Products-htmls/All Products/Women/Sandals/03.png", price: "PKR 9800" },
-        { name: "Bohemian", img: "/1.Products-htmls/All Products/Women/Sandals/04.png", price: "PKR 11200" },
-        { name: "Casual Slip-On", img: "/1.Products-htmls/All Products/Women/Sandals/05.png", price: "PKR 12600" },
-        { name: "Luxurious Strap", img: "/1.Products-htmls/All Products/Women/Sandals/06.png", price: "PKR 14000" }
+        { name: "Elegant Flat", img: "assets/images/products/women/sandals/01.png", price: "PKR 7000" },
+        { name: "Sparkly Toe-Post", img: "assets/images/products/women/sandals/02.png", price: "PKR 8400" },
+        { name: "Chic Ankle Strap", img: "assets/images/products/women/sandals/03.png", price: "PKR 9800" },
+        { name: "Bohemian", img: "assets/images/products/women/sandals/04.png", price: "PKR 11200" },
+        { name: "Casual Slip-On", img: "assets/images/products/women/sandals/05.png", price: "PKR 12600" },
+        { name: "Luxurious Strap", img: "assets/images/products/women/sandals/06.png", price: "PKR 14000" }
     ],
     "Sneakers": [
-        { name: "Sporty Pink", img: "/1.Products-htmls/All Products/Women/Sneakers/01.png", price: "PKR 16800" },
-        { name: "Casual Slip-On", img: "/1.Products-htmls/All Products/Women/Sneakers/02.png", price: "PKR 18200" },
-        { name: "Stylish High-Tops", img: "/1.Products-htmls/All Products/Women/Sneakers/03.png", price: "PKR 19600" },
-        { name: "Luxe Leather", img: "/1.Products-htmls/All Products/Women/Sneakers/04.png", price: "PKR 21000" },
-        { name: "Floral Print", img: "/1.Products-htmls/All Products/Women/Sneakers/05.png", price: "PKR 22400" },
-        { name: "Sporty Running", img: "/1.Products-htmls/All Products/Women/Sneakers/06.png", price: "PKR 23800" }
+        { name: "Sporty Pink", img: "assets/images/products/women/sneakers/01.png", price: "PKR 16800" },
+        { name: "Casual Slip-On", img: "assets/images/products/women/sneakers/02.png", price: "PKR 18200" },
+        { name: "Stylish High-Tops", img: "assets/images/products/women/sneakers/03.png", price: "PKR 19600" },
+        { name: "Luxe Leather", img: "assets/images/products/women/sneakers/04.png", price: "PKR 21000" },
+        { name: "Floral Print", img: "assets/images/products/women/sneakers/05.png", price: "PKR 22400" },
+        { name: "Sporty Running", img: "assets/images/products/women/sneakers/06.png", price: "PKR 23800" }
     ]
 };
 
@@ -383,7 +383,7 @@ function attachCartListeners() {
             localStorage.setItem("selectedProduct", JSON.stringify(productDetails));
 
             // Redirect to the product details page
-            window.location.href = "02.p_descryption.html";
+            window.location.href = "product.html";
         };
     });
 }

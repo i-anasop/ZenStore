@@ -1,64 +1,129 @@
-# 🛍️ Zen Store – AI-Powered eCommerce Website
+# Zen Store
 
-Zen Store is a modern, responsive, and feature-rich eCommerce website powered by AI. Built with a clean front-end and integrated chatbot support, it simulates real-world online shopping with features like dynamic product listings, cart management, checkout, and EasyPaisa-based payments.
+A modern, responsive eCommerce front-end for a footwear store, built with plain HTML, CSS, and JavaScript. Browse products by category, add items to a cart, sign in, check out with a simulated EasyPaisa flow, and chat with an AI assistant.
 
----
-
-## 🚀 Features
-
-- 🏠 **Home Page** – Showcases all products in a clean, dynamic layout
-- 🧢 **Product Categories** – Men, Women, and Sports categories with dynamic content
-- 📄 **Product Details Page** – Displays detailed info of selected products
-- 🛒 **Cart System** – Add, remove, and view cart items in real time
-- 🔐 **Login/Signup System** – User authentication for secure access
-- 📦 **Checkout Page** – Choose delivery option and EasyPaisa payment method
-- ✅ **Order Approval** – Admin panel to manually verify orders/payments
-- 💬 **AI Chatbot** – Integrated chatbot assistant via [Chatbase.co](https://www.chatbase.co)
-- 👤 **User Profile** – View order history and account info
-- 🙏 **Thank You Page** – Final confirmation screen for successful orders
+**Live demo:** https://i-anasop.github.io/Zen-Store/
 
 ---
 
-## 🧠 Tech Stack
+## Features
 
-- **HTML**
-- **CSS**
-- **JavaScript**
-- **Chatbot API** – via Chatbase.co
-- **Manual Backend Flow** – Payment verification via admin panel
-
----
-
-## 📦 Installation
-
-
-1. Download the ZIP or Clone the repository
-2. Extract the folder
-3. Open `Home.html` in your browser
-4. Explore all pages manually or host on a local server for full experience
+- Multi-category product browsing (Men, Women, Sports)
+- Product detail pages
+- Shopping cart with add / remove / quantity controls
+- Login & sign-up flow
+- Checkout with delivery option and EasyPaisa payment
+- Order confirmation and thank-you page
+- Admin panel for manual order verification
+- User profile with order history view
+- Embedded AI chatbot (powered by Chatbase)
+- Animated preloader on page load
+- Fully responsive layout
 
 ---
 
-## 🔑 Notes
+## Tech Stack
 
-- ✅ Payments are manually checked via admin panel (no live API integration).
-- 🤖 AI chatbot uses a free trial API from Chatbase.co – Thanks to them!
-- 🌐 This project simulates real online shopping but is not connected to any live backend/payment gateway.
+- **HTML5** — page structure
+- **CSS3** — styling, layout, and responsiveness
+- **JavaScript (vanilla)** — interactivity and cart logic
+- **Chatbase** — AI chatbot embed
+- **LottieFiles** — preloader animation
+
+No build step, no frameworks, no dependencies to install.
 
 ---
 
-## 🙌 Credits
+## Project Structure
+
+```
+Zen-Store/
+├── index.html              Home page
+├── men.html                Men's category
+├── women.html              Women's category
+├── sports.html             Sports category
+├── product.html            Product details
+├── cart.html               Shopping cart
+├── login.html              Sign in
+├── signup.html             Create account
+├── checkout.html           Checkout & payment
+├── profile.html            User profile
+├── admin.html              Admin order verification
+├── thankyou.html           Order confirmation
+├── 404.html                Not-found page
+├── assets/
+│   ├── css/style.css       Global stylesheet
+│   ├── js/bot.js           Chatbot + preloader
+│   ├── images/
+│   │   ├── logo.jpg
+│   │   ├── products/       Product photos by category
+│   │   ├── collections/    Featured collection images
+│   │   ├── payments/       Payment method images
+│   │   ├── socials/        Social media icons
+│   │   └── extras/         Hero & decorative imagery
+│   └── svg/                SVG icons
+├── README.md
+├── LICENSE
+└── .gitignore
+```
+
+---
+
+## Getting Started
+
+### Run locally
+
+The site is fully static. You can either open `index.html` directly in a browser, or serve the folder with any static file server for the best experience (so absolute paths and the chatbot work correctly):
+
+```bash
+# Python 3
+python3 -m http.server 8000
+
+# or Node
+npx serve .
+```
+
+Then visit `http://localhost:8000`.
+
+### Clone
+
+```bash
+git clone https://github.com/i-anasop/Zen-Store.git
+cd Zen-Store
+```
+
+---
+
+## Deployment
+
+This site is hosted for free on **GitHub Pages**, served from the `main` branch root.
+
+To deploy your own fork:
+
+1. Push the project to a GitHub repository.
+2. Go to **Settings → Pages**.
+3. Under **Build and deployment**, set **Source** to `Deploy from a branch`.
+4. Select branch `main` and folder `/ (root)`, then save.
+5. Your site will be live at `https://<your-username>.github.io/<repo-name>/` within a minute.
+
+---
+
+## Notes
+
+- Payments are simulated and verified manually through the admin panel — no live payment gateway is integrated.
+- The chatbot uses a Chatbase embed and requires an internet connection.
+- This project is a front-end demo and is not connected to a live backend or database.
+
+---
+
+## Credits
 
 - Developed by **Anas**
-- AI & development support by **ChatGPT**
-- Chatbot powered by **[Chatbase.co](https://chatbase.co)**
+- Chatbot powered by [Chatbase](https://chatbase.co)
+- Preloader animation from [LottieFiles](https://lottiefiles.com)
 
 ---
 
-## 📃 License
+## License
 
-This project can be used with credits.
-
----
-
-> Made with Love 💻 by (Anas)
+Released under the [MIT License](LICENSE).

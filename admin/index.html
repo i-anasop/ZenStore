@@ -1,315 +1,76 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Admin Panel - Payment Requests</title>
-<style>
-/* General Styling */
-body {
-    font-family: 'Poppins', sans-serif; /* Modern font */
-    background-color: #f4f6f9;
-    margin: 0;
-    padding: 0;
-    color: #333;
-}
-
-/* Admin Panel Container */
-.admin-container {
-    max-width: 1100px;
-    margin: 50px auto;
-    padding: 30px;
-    background: white;
-    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
-    border-radius: 12px;
-    overflow: hidden;
-    transition: all 0.3s ease-in-out;
-}
-
-/* Header */
-.admin-header {
-    text-align: center;
-    font-size: 24px;
-    font-weight: bold;
-    color: #222;
-    padding-bottom: 18px;
-    border-bottom: 4px solid #0056b3;
-}
-
-/* Table Styling */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: white;
-    margin-top: 20px;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-th, td {
-    padding: 16px;
-    text-align: center;
-    border-bottom: 1px solid #ddd;
-}
-
-th {
-    background-color: #0056b3;
-    color: white;
-    font-size: 17px;
-}
-
-tr:nth-child(even) {
-    background-color: #f8f9fc;
-}
-
-tr:hover {
-    background-color: #e3e7f1;
-    transition: 0.3s ease-in-out;
-}
-
-td {
-    font-size: 15px;
-    color: #444;
-}
-
-/* Action Buttons */
-.action-btn {
-    padding: 10px 16px;
-    font-size: 15px;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-    border-radius: 6px;
-    transition: all 0.3s ease-in-out;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.12);
-}
-
-/* Remove Button */
-.remove-btn {
-    background-color: #ffcc00;
-    color: black;
-    padding: 9px 14px;
-    font-size: 15px;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 6px;
-    transition: background 0.3s ease, transform 0.2s ease-in-out;
-}
-
-.remove-btn:hover {
-    background-color: #e6b800;
-    transform: scale(1.05);
-}
-
-
-/* Accept Button - Modern Green */
-.approve-btn {
-    background: linear-gradient(135deg, #28a745, #218838); /* Smooth gradient */
-    color: white;
-    padding: 12px 18px;
-    font-size: 15px;
-    font-weight: bold;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    box-shadow: 0px 4px 12px rgba(40, 167, 69, 0.3);
-}
-
-.approve-btn:hover {
-    background: linear-gradient(135deg, #218838, #1e7e34);
-    box-shadow: 0px 6px 15px rgba(40, 167, 69, 0.5);
-    transform: scale(1.05);
-}
-
-/* Reject Button - Modern Red */
-.reject-btn {
-    background: linear-gradient(135deg, #dc3545, #c82333);
-    color: white;
-    padding: 12px 18px;
-    font-size: 15px;
-    font-weight: bold;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    box-shadow: 0px 4px 12px rgba(220, 53, 69, 0.3);
-}
-
-.reject-btn:hover {
-    background: linear-gradient(135deg, #c82333, #bd2130);
-    box-shadow: 0px 6px 15px rgba(220, 53, 69, 0.5);
-    transform: scale(1.05);
-}
-
-.clear-storage-btn {
-    background-color: #ff4444;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background 0.3s ease-in-out;
-    margin-top: 15px;
-}
-
-.clear-storage-btn:hover {
-    background-color: #cc0000;
-}
-
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    th, td {
-        padding: 12px;
-        font-size: 14px;
-    }
-
-    .action-btn {
-        padding: 8px 14px;
-        font-size: 13px;
-    }
-}
-
-
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin · Zen Store</title>
+  <link rel="icon" href="../assets/images/logo.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/main.css">
 </head>
-
 <body>
+<main>
 
-    <div class="admin-container">
-        <button id="clearStorageBtn" class="clear-storage-btn">Clear All Orders</button>
-        <div class="admin-header">Payment Requests</div>
-        <table>
-            <thead>
-                <tr>
-                    <th>Order ID</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Payment Method</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody id="payment-requests">
-                <!-- Payment requests will be loaded here -->
-            </tbody>
-        </table>
+  <section class="page-head">
+    <div class="container">
+      <div class="crumbs"><a href="../">Home</a> · Admin</div>
+      <h1>Admin dashboard</h1>
+      <p class="text-muted">Verify and manage incoming orders.</p>
     </div>
-
-    <script>
-
-document.addEventListener("DOMContentLoaded", function () {
-    localStorage.setItem("adminOnline", "true"); // ✅ Set admin as online
-    loadPaymentRequests();
-});
-
-window.addEventListener("beforeunload", function () {
-    localStorage.setItem("adminOnline", "false"); // ✅ Set admin as offline when they close the page
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-    loadPaymentRequests();
-});
-
-// ✅ FIX: Correct Table ID Reference
-function loadPaymentRequests() {
-    const requestsTable = document.getElementById("payment-requests");
-    requestsTable.innerHTML = ""; // Clear existing rows
-
-    let orders = JSON.parse(localStorage.getItem("orders")) || []; 
-
-    orders.forEach((order, index) => {
-        const row = document.createElement("tr");
-        row.id = `order-${order.orderNumber}`; // ✅ Fix row ID for removal
-        row.innerHTML = `
-            <td>${order.orderNumber}</td> 
-            <td>${order.name}</td>
-            <td>${order.email}</td>
-            <td>${order.paymentMethod}</td>
-            <td id="status-${order.orderNumber}" style="font-weight: bold; color: orange;">${order.status}</td>
-            <td>
-                <button class="approve-btn" data-index="${index}">✔ Accept</button>
-                <button class="reject-btn" data-index="${index}">✖ Reject</button>
-                <button class="remove-btn" data-index="${index}">➡ Remove</button>
-            </td>
-        `;
-        requestsTable.appendChild(row);
-    });
-
-    addEventListeners();
+  </section>
+  <section class="container section-tight" id="admin-root"></section>
+</main>
+<script src="../assets/js/data.js"></script>
+<script src="../assets/js/cart.js"></script>
+<script src="../assets/js/auth.js"></script>
+<script src="../assets/js/orders.js"></script>
+<script src="../assets/js/base.js"></script>
+<script>ZEN.initLayout('');</script>
+<script>
+function render() {
+  const orders = ZEN.getOrders();
+  const stats = {
+    total: orders.length,
+    pending: orders.filter(o => o.status === 'pending').length,
+    approved: orders.filter(o => o.status === 'approved').length,
+    revenue: orders.filter(o => o.status === 'approved').reduce((a,o) => a + o.totals.total, 0),
+  };
+  const root = document.getElementById('admin-root');
+  root.innerHTML =
+    '<div class="admin-stats">' +
+      '<div class="stat-card"><span>Total orders</span><strong>'+stats.total+'</strong></div>' +
+      '<div class="stat-card"><span>Pending</span><strong>'+stats.pending+'</strong></div>' +
+      '<div class="stat-card"><span>Approved</span><strong>'+stats.approved+'</strong></div>' +
+      '<div class="stat-card"><span>Revenue</span><strong>'+ZEN.fmt(stats.revenue)+'</strong></div>' +
+    '</div>' +
+    (orders.length ? '<div class="order-list">' + orders.map(orderHtml).join('') + '</div>'
+      : '<div class="empty-state"><div class="empty-state-icon"><i class="fas fa-inbox"></i></div><h3>No orders yet</h3><p>Place an order on the site to see it appear here.</p></div>');
+  root.querySelectorAll('[data-action]').forEach(b => b.addEventListener('click', () => {
+    const a = b.dataset.action; const id = b.dataset.id;
+    if (a === 'approve') { ZEN.updateOrderStatus(id, 'approved'); ZEN.toast('Order approved', 'success'); }
+    if (a === 'reject') { ZEN.updateOrderStatus(id, 'rejected'); ZEN.toast('Order rejected'); }
+    if (a === 'pending') { ZEN.updateOrderStatus(id, 'pending'); }
+    if (a === 'delete') { if (!confirm('Delete this order?')) return; ZEN.deleteOrder(id); ZEN.toast('Order deleted'); }
+    render();
+  }));
 }
-
-// ✅ FIX: Attach Event Listeners
-function addEventListeners() {
-    document.querySelectorAll(".approve-btn").forEach(button => {
-        button.addEventListener("click", function () {
-            const index = parseInt(this.getAttribute("data-index"));
-            updatePaymentStatus(index, "Accepted");
-        });
-    });
-
-    document.querySelectorAll(".reject-btn").forEach(button => {
-        button.addEventListener("click", function () {
-            const index = parseInt(this.getAttribute("data-index"));
-            updatePaymentStatus(index, "Rejected");
-        });
-    });
-
-    document.querySelectorAll(".remove-btn").forEach(button => {
-        button.addEventListener("click", function () {
-            const index = parseInt(this.getAttribute("data-index"));
-            removeOrder(index);
-        });
-    });
+function orderHtml(o) {
+  return '<div class="order"><div class="order-head"><div><h4>#'+o.id+' · '+o.user.name+'</h4>' +
+    '<div class="order-meta">'+new Date(o.createdAt).toLocaleString()+' · '+o.payment.method+' · '+o.address.city+'</div></div>' +
+    '<span class="status status-'+o.status+'">'+o.status+'</span></div>' +
+    '<div class="order-items">' + o.items.map(i => '<div class="order-item"><span>'+i.name+(i.size?\' (\'+i.size+\')\':\'\')+' × '+i.qty+'</span><span>'+ZEN.fmt(i.price * i.qty)+'</span></div>').join('') + '</div>' +
+    '<div class="order-total"><span>Total</span><span>'+ZEN.fmt(o.totals.total)+'</span></div>' +
+    '<div class="admin-actions" style="margin-top:12px;">' +
+      (o.status !== 'approved' ? '<button class="btn btn-primary" data-action="approve" data-id="'+o.id+'"><i class="fas fa-check"></i> Approve</button>' : '') +
+      (o.status !== 'rejected' ? '<button class="btn btn-secondary" data-action="reject" data-id="'+o.id+'"><i class="fas fa-xmark"></i> Reject</button>' : '') +
+      (o.status !== 'pending' ? '<button class="btn btn-ghost" data-action="pending" data-id="'+o.id+'">Mark pending</button>' : '') +
+      '<button class="btn btn-ghost" data-action="delete" data-id="'+o.id+'" style="color:var(--c-danger);"><i class="fas fa-trash"></i> Delete</button>' +
+    '</div></div>';
 }
-
-// ✅ FIX: Accept/Reject Now Updates Checkout Page Too
-function updatePaymentStatus(index, status) {
-    let orders = JSON.parse(localStorage.getItem("orders")) || [];
-
-    if (orders[index]) {
-        orders[index].status = status;
-        localStorage.setItem("orders", JSON.stringify(orders));
-
-        document.getElementById(`status-${orders[index].orderNumber}`).innerText = status;
-        document.getElementById(`status-${orders[index].orderNumber}`).style.color = status === "Accepted" ? "green" : "red";
-
-        localStorage.setItem("latestOrderStatus", JSON.stringify(orders[index]));
-    }
-
-    loadPaymentRequests(); // Refresh table
-}
-
-// ✅ FIX: Fully Functional Remove Order Button
-function removeOrder(index) {
-    let orders = JSON.parse(localStorage.getItem("orders")) || [];
-
-    if (index >= 0 && index < orders.length) {
-        const orderNumber = orders[index].orderNumber;
-        orders.splice(index, 1); // Remove order
-
-        localStorage.setItem("orders", JSON.stringify(orders)); // Save updated orders
-
-        let rowElement = document.getElementById(`order-${orderNumber}`);
-        if (rowElement) {
-            rowElement.remove(); // Remove from UI
-        }
-    }
-
-    loadPaymentRequests();
-}
-
-// ✅ FIX: Fully Working "Clear All Orders" Button
-document.getElementById("clearStorageBtn").addEventListener("click", function () {
-    if (confirm("Are you sure you want to clear all orders?")) {
-        localStorage.removeItem("orders"); // Clear all orders
-        document.getElementById("payment-requests").innerHTML = ""; // Clear table
-        console.log("All orders cleared!");
-    }
-});
-
-    </script>
+render();
+</script>
 </body>
 </html>

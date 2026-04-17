@@ -1,215 +1,75 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-
-    <title>Zen | Cart</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link rel="icon" href="../assets/svg/01.favicon.svg" type="img/svg">
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <script src="../assets/js/bot.js"></script>
-
-<style>
-
-body {
-    font-family: Arial, sans-serif;
-    background: #3886e6;
-}
-
-.container {
-    width: 1200px;  
-    margin: 130px auto 0;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-   
-h1, h2 {
-    text-align: center;
-}
-
-.cart {
-    margin-top: 20px;
-}
-
-.cart-header, .cart-footer, .cart-items > div {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-}
-
-.cart-header, .cart-footer {
-    background-color: #f4f4f4;
-    font-weight: bold;
-}
-
-.cart-items > div {
-    align-items: center;
-}
-
-button {
-    padding: 5px 10px;
-    background-color: #5558f8;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: rgb(8, 36, 158);
-}
-
-.remove-button {
-    background-color: red;
-}
-
-.remove-button:hover {
-    background-color: darkred;
-}
-
-.proceed-to-checkout {
-    margin-top: 10px;
-    grid-column: span 5;
-    text-align: center;
-}
-
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart · Zen Store</title>
+  <link rel="icon" href="../assets/images/logo.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/main.css">
 </head>
 <body>
+<main>
 
- <!-- Header -->
- <header class="transparent-header">
-    <div class="header-container">
-        <a href="../"> 
-        <div class="hlogo">
-        <img src="../assets/svg/01.favicon.svg" type="img/svg" alt="Company Logo">
-        </div>
-        <p id="pp">Zen Store</p></a>  
-        <div class="nav-links">
-        <a href="../">Home</a>
-        <div class="product-dropdown">
-            <a href="#">Product</a>
-            <ul class="product-menu">
-                <li><a href="../men/">Men</a></li>
-                <li><a href="../women/">Women</a></li>
-                <li><a href="../sports/">Sports</a></li>
-            </ul>
-        </div>
-        <a href="../cart/">Cart</a>
-        </div>
-        <div class="navsym">
-           
-            <div class="profile-dropdown">
-                <a href="../account/profile/"><i class="fas fa-user"></i></a>
-                </ul>
-            </div>
-        </div>
+  <section class="page-head">
+    <div class="container">
+      <div class="crumbs"><a href="../">Home</a> · Cart</div>
+      <h1>Your cart</h1>
     </div>
-</header>
-
-<!-- Main Container -->
-<div class="container">
-    <h1>Shopping Cart</h1>
-    <div class="cart">
-        <div class="cart-header">
-            <span>Item</span>
-            <span>Price</span>
-            <span>Quantity</span>
-            <span>Total</span>
-            <span>Action</span>
-        </div>
-        <div class="cart-items">
-        <!-- Items will be dynamically added here -->
-        </div>
-        <div class="cart-footer">
-            <span>Total Price:</span>
-            <span id="total-price">PKR 0.00</span>
-        </div>
-        <a href="../account/checkout/"><button class="proceed-to-checkout" id="proceed-to-checkout">Proceed to Checkout</button></a>
-    </div>
-</div>
+  </section>
+  <section class="container section-tight" id="cart-root"></section>
+</main>
+<script src="../assets/js/data.js"></script>
+<script src="../assets/js/cart.js"></script>
+<script src="../assets/js/auth.js"></script>
+<script src="../assets/js/orders.js"></script>
+<script src="../assets/js/base.js"></script>
+<script>ZEN.initLayout('');</script>
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        const cartContainer = document.querySelector('.cart-items');
-        const totalPriceElement = document.getElementById('total-price');
-    
-        function updateCartUI() {
-            cartContainer.innerHTML = '';
-            let totalPrice = 0;
-    
-            cart.forEach((product, index) => {
-                // Ensure price is valid
-                let price = parseFloat(product.price.replace("PKR", "").trim()) || 0;
-                let productTotal = price * product.quantity;
-                totalPrice += productTotal;
-    
-                // Safely display the product information (only size and quantity, no color)
-                const productDiv = document.createElement('div');
-                productDiv.classList.add('cart-item');
-                productDiv.innerHTML = `
-                    <span>
-                        <img src="${product.image}" alt="${product.name}" width="50"> 
-                        ${product.name} (${product.size || 'N/A'})
-                    </span>
-                    <span>PKR ${price}</span>
-                    <span>
-                        <button class="decrease" data-index="${index}">-</button>
-                        <span class="quantity">${product.quantity}</span>
-                        <button class="increase" data-index="${index}">+</button>
-                    </span>
-                    <span class="total-price-item">PKR ${productTotal.toFixed(0)}</span>
-                    <button class="remove-button" data-index="${index}">Remove</button>
-                `;
-                cartContainer.appendChild(productDiv);
-            });
-    
-            totalPriceElement.textContent = `PKR ${totalPrice.toFixed(0)}`;
-            localStorage.setItem('totalPrice', totalPrice.toFixed(0));  // Store the total price in localStorage
-            localStorage.setItem('cart', JSON.stringify(cart));
-            attachEventListeners(); 
-        }
-    
-        function attachEventListeners() {
-            document.querySelectorAll('.increase').forEach(button => {
-                button.addEventListener('click', function() {
-                    const index = this.getAttribute('data-index');
-                    cart[index].quantity += 1;
-                    updateCartUI();
-                });
-            });
-    
-            document.querySelectorAll('.decrease').forEach(button => {
-                button.addEventListener('click', function() {
-                    const index = this.getAttribute('data-index');
-                    if (cart[index].quantity > 1) {
-                        cart[index].quantity -= 1;
-                    } else {
-                        cart.splice(index, 1);
-                    }
-                    updateCartUI();
-                });
-            });
-    
-            document.querySelectorAll('.remove-button').forEach(button => {
-                button.addEventListener('click', function() {
-                    const index = this.getAttribute('data-index');
-                    cart.splice(index, 1);
-                    updateCartUI();
-                });
-            });
-        }
-    
-        updateCartUI();
-    });
+function render() {
+  const root = document.getElementById('cart-root');
+  const t = ZEN.cartTotals();
+  if (!t.items.length) {
+    root.innerHTML = '<div class="empty-state"><div class="empty-state-icon"><i class="fas fa-shopping-bag"></i></div><h3>Your cart is empty</h3><p>Looks like you haven\'t added anything yet. Start exploring our collections.</p><a class="btn btn-primary" href="../men/">Browse products</a></div>';
+    return;
+  }
+  root.innerHTML =
+    '<div class="cart-layout">' +
+      '<div class="cart-list">' +
+        t.items.map(i => {
+          const sizeLabel = i.size ? ' · Size ' + i.size : '';
+          return '<div class="cart-item"><div class="cart-item-img"><img src="'+ZEN.url(i.product.image)+'" alt=""></div>' +
+            '<div class="cart-item-info"><h4>'+i.product.name+'</h4>' +
+            '<div class="cart-item-meta">'+ZEN.cap(i.product.category)+' · '+ZEN.cap(i.product.subcategory.replace(/-/g,\' \'))+sizeLabel+'</div>' +
+            '<div class="cart-item-price" style="margin-top:6px;">'+ZEN.fmt(i.product.price)+'</div></div>' +
+            '<div class="cart-item-actions">' +
+              '<div class="qty-stepper"><button data-act="dec" data-id="'+i.id+'" data-size="'+(i.size||\'\')+'">−</button><span>'+i.qty+'</span><button data-act="inc" data-id="'+i.id+'" data-size="'+(i.size||\'\')+'">+</button></div>' +
+              '<button class="cart-item-remove" data-act="rm" data-id="'+i.id+'" data-size="'+(i.size||\'\')+'"><i class="fas fa-trash"></i> Remove</button>' +
+            '</div></div>';
+        }).join('') +
+      '</div>' +
+      '<aside class="cart-summary"><h3>Order summary</h3>' +
+        '<div class="summary-row"><span>Subtotal</span><span>'+ZEN.fmt(t.subtotal)+'</span></div>' +
+        '<div class="summary-row"><span>Shipping</span><span>'+(t.shipping?ZEN.fmt(t.shipping):\'Free\')+'</span></div>' +
+        '<div class="summary-row"><span>Tax (5%)</span><span>'+ZEN.fmt(t.tax)+'</span></div>' +
+        '<div class="summary-row total"><span>Total</span><span>'+ZEN.fmt(t.total)+'</span></div>' +
+        '<a class="btn btn-primary btn-block" style="margin-top:16px;" href="../account/checkout/">Proceed to checkout <i class="fas fa-arrow-right"></i></a>' +
+        '<a class="btn btn-ghost btn-block" style="margin-top:8px;" href="../men/">Continue shopping</a>' +
+      '</aside>' +
+    '</div>';
+  root.querySelectorAll('[data-act]').forEach(b => b.addEventListener('click', () => {
+    const id = b.dataset.id; const size = b.dataset.size ? +b.dataset.size : null;
+    const cur = ZEN.getCart().find(x => x.id === id && x.size === size);
+    if (b.dataset.act === 'inc') ZEN.cartUpdateQty(id, (cur?cur.qty:0)+1, size);
+    else if (b.dataset.act === 'dec') ZEN.cartUpdateQty(id, (cur?cur.qty:0)-1, size);
+    else if (b.dataset.act === 'rm') ZEN.cartRemove(id, size);
+    render();
+  }));
+}
+render();
 </script>
-
-    
-    
-    
-
 </body>
 </html>
-

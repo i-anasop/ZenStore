@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Checkout · Zen Store</title>
-  <link rel="icon" href="../../assets/images/logo.jpg">
+  <link rel="icon" type="image/svg+xml" href="../../assets/images/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
@@ -41,7 +41,7 @@ if (!t.items.length) {
     '<div class="form-card" style="max-width:none;margin:0;">' +
       '<h3 style="margin-bottom:16px;">Delivery details</h3>' +
       '<form id="checkout-form" novalidate>' +
-        '<div class="field"><label>Full name</label><input type="text" id="ck-name" required value="'+(user?user.name:\'\')+'"></div>' +
+        '<div class="field"><label>Full name</label><input type="text" id="ck-name" required value="'+(user?user.name:'')+'"></div>' +
         '<div class="field"><label>Phone</label><input type="tel" id="ck-phone" required></div>' +
         '<div class="field"><label>Address</label><input type="text" id="ck-addr" required></div>' +
         '<div class="form-row"><div class="field"><label>City</label><input type="text" id="ck-city" required></div><div class="field"><label>Postal code</label><input type="text" id="ck-zip" required></div></div>' +
@@ -55,9 +55,9 @@ if (!t.items.length) {
     '</div>' +
     '<aside class="cart-summary" style="position:sticky;top:90px;">' +
       '<h3>Your order</h3>' +
-      t.items.map(i => '<div class="summary-row"><span>'+i.product.name+(i.size?\' (\'+i.size+\')\':\'\')+' × '+i.qty+'</span><span>'+ZEN.fmt(i.product.price*i.qty)+'</span></div>').join('') +
+      t.items.map(i => '<div class="summary-row"><span>'+i.product.name+(i.size?' ('+i.size+')':'')+' × '+i.qty+'</span><span>'+ZEN.fmt(i.product.price*i.qty)+'</span></div>').join('') +
       '<div class="summary-row" style="border-top:1px solid var(--c-border);margin-top:12px;padding-top:12px;"><span>Subtotal</span><span>'+ZEN.fmt(t.subtotal)+'</span></div>' +
-      '<div class="summary-row"><span>Shipping</span><span>'+(t.shipping?ZEN.fmt(t.shipping):\'Free\')+'</span></div>' +
+      '<div class="summary-row"><span>Shipping</span><span>'+(t.shipping?ZEN.fmt(t.shipping):'Free')+'</span></div>' +
       '<div class="summary-row"><span>Tax</span><span>'+ZEN.fmt(t.tax)+'</span></div>' +
       '<div class="summary-row total"><span>Total</span><span>'+ZEN.fmt(t.total)+'</span></div>' +
     '</aside>';

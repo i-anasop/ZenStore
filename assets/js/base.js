@@ -97,10 +97,10 @@
         </a>
         <p>Modern footwear for every step of your journey. Crafted to last, designed to inspire.</p>
         <div class="foot-socials">
-          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="#" data-social="Facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" data-social="Instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" data-social="Twitter" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" data-social="YouTube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
         </div>
       </div>
       <div class="foot-col">
@@ -119,10 +119,10 @@
       </div>
       <div class="foot-col">
         <h4>Help</h4>
-        <a href="#">Shipping</a>
-        <a href="#">Returns</a>
-        <a href="#">Size Guide</a>
-        <a href="#">Contact</a>
+        <a href="#" data-info="shipping">Shipping</a>
+        <a href="#" data-info="returns">Returns</a>
+        <a href="#" data-info="size-guide">Size Guide</a>
+        <a href="#" data-info="contact">Contact</a>
       </div>
     </div>
     <div class="foot-bottom">
@@ -174,6 +174,27 @@
     if (input) input.addEventListener('input', (e) => renderResults(e.target.value));
   };
 
+  const wireFooter = () => {
+    const infoText = {
+      'shipping': 'Free shipping on orders over $100. Standard delivery in 3–5 business days.',
+      'returns': '30-day hassle-free returns. Items must be unworn with original packaging.',
+      'size-guide': 'EU sizing. For best fit, measure your foot length and refer to our size chart.',
+      'contact': 'Questions? Use the chat in the corner or email support@zenstore.example.',
+    };
+    document.querySelectorAll('a[data-info]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        toast(infoText[a.dataset.info] || 'Coming soon', 'info');
+      });
+    });
+    document.querySelectorAll('a[data-social]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        toast('Follow us on ' + a.dataset.social + ' — link coming soon!', 'info');
+      });
+    });
+  };
+
   const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
   ZEN.cap = cap;
 
@@ -187,12 +208,45 @@
     els.forEach(e => io.observe(e));
   };
 
+  // --- Chatbase chatbot ---
+  const loadChatbase = () => {
+    if (window.chatbase && window.chatbase('getState') === 'initialized') return;
+    window.chatbase = (...args) => {
+      if (!window.chatbase.q) window.chatbase.q = [];
+      window.chatbase.q.push(args);
+    };
+    window.chatbase = new Proxy(window.chatbase, {
+      get(t, p) { if (p === 'q') return t.q; return (...a) => t(p, ...a); }
+    });
+    const onLoad = () => {
+      const s = document.createElement('script');
+      s.src = 'https://www.chatbase.co/embed.min.js';
+      s.id = 'unEJS8Y20W90Uwi1uxa9v';
+      s.domain = 'www.chatbase.co';
+      document.body.appendChild(s);
+    };
+    if (document.readyState === 'complete') onLoad();
+    else window.addEventListener('load', onLoad);
+  };
+
+  // --- Favicon ---
+  const setFavicon = () => {
+    const href = url('assets/images/favicon.svg');
+    let link = document.querySelector('link[rel~="icon"]');
+    if (!link) { link = document.createElement('link'); link.rel = 'icon'; document.head.appendChild(link); }
+    link.type = 'image/svg+xml';
+    link.href = href;
+  };
+
   // --- Init ---
   ZEN.initLayout = (active) => {
+    setFavicon();
     document.body.insertAdjacentHTML('afterbegin', buildHeader(active));
     document.body.insertAdjacentHTML('beforeend', buildFooter());
     wireHeader();
+    wireFooter();
     setupReveal();
+    loadChatbase();
   };
 
   // Update cart badge

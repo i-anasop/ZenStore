@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin · Zen Store</title>
-  <link rel="icon" href="../assets/images/logo.jpg">
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
@@ -61,7 +61,7 @@ function orderHtml(o) {
   return '<div class="order"><div class="order-head"><div><h4>#'+o.id+' · '+o.user.name+'</h4>' +
     '<div class="order-meta">'+new Date(o.createdAt).toLocaleString()+' · '+o.payment.method+' · '+o.address.city+'</div></div>' +
     '<span class="status status-'+o.status+'">'+o.status+'</span></div>' +
-    '<div class="order-items">' + o.items.map(i => '<div class="order-item"><span>'+i.name+(i.size?\' (\'+i.size+\')\':\'\')+' × '+i.qty+'</span><span>'+ZEN.fmt(i.price * i.qty)+'</span></div>').join('') + '</div>' +
+    '<div class="order-items">' + o.items.map(i => '<div class="order-item"><span>'+i.name+(i.size?' ('+i.size+')':'')+' × '+i.qty+'</span><span>'+ZEN.fmt(i.price * i.qty)+'</span></div>').join('') + '</div>' +
     '<div class="order-total"><span>Total</span><span>'+ZEN.fmt(o.totals.total)+'</span></div>' +
     '<div class="admin-actions" style="margin-top:12px;">' +
       (o.status !== 'approved' ? '<button class="btn btn-primary" data-action="approve" data-id="'+o.id+'"><i class="fas fa-check"></i> Approve</button>' : '') +

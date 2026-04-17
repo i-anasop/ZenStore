@@ -7,8 +7,10 @@
   <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"></noscript>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
   <link rel="stylesheet" href="../assets/css/main.css">
 </head>
 <body>
@@ -53,7 +55,7 @@ if (!p) {
         '<button class="btn btn-primary btn-lg" id="add-to-cart"><i class="fas fa-shopping-bag"></i> Add to cart</button>' +
         '<button class="btn btn-secondary btn-lg" id="buy-now">Buy now</button>' +
       '</div>' +
-      '<div class="pd-section" style="margin-top:24px;color:var(--c-text-muted);font-size:.9rem;"><i class="fas fa-truck-fast"></i> Free shipping on orders over $100 · <i class="fas fa-rotate-left"></i> 30-day returns</div>' +
+      '<div class="pd-section" style="margin-top:24px;color:var(--c-text-muted);font-size:.9rem;"><i class="fas fa-truck-fast"></i> Free shipping on orders over Rs 30,000 · <i class="fas fa-rotate-left"></i> 30-day returns</div>' +
     '</div>';
   document.title = p.name + ' · Zen Store';
   let selectedSize = 40;

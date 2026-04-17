@@ -37,8 +37,8 @@
   ZEN.cartTotals = () => {
     const items = ZEN.getCart().map(i => ({ ...i, product: ZEN.findProduct(i.id) })).filter(i => i.product);
     const subtotal = items.reduce((a, i) => a + i.product.price * i.qty, 0);
-    const shipping = subtotal > 0 && subtotal < 100 ? 9.99 : 0;
-    const tax = subtotal * 0.05;
+    const shipping = subtotal > 0 && subtotal < 30000 ? 300 : 0;
+    const tax = Math.round(subtotal * 0.05);
     const total = subtotal + shipping + tax;
     return { items, subtotal, shipping, tax, total };
   };

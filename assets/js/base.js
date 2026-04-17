@@ -46,7 +46,8 @@
   ZEN.toast = toast;
 
   // --- Currency ---
-  ZEN.fmt = (n) => '$' + Number(n).toFixed(2);
+  ZEN.fmt = (n) => 'Rs ' + Math.round(Number(n)).toLocaleString('en-PK');
+  ZEN.currency = 'PKR';
 
   // --- Layout: build header + footer ---
   const navItem = (label, href, active) => `<a href="${href}"${active ? ' class="active"' : ''}>${label}</a>`;
@@ -176,7 +177,7 @@
 
   const wireFooter = () => {
     const infoText = {
-      'shipping': 'Free shipping on orders over $100. Standard delivery in 3–5 business days.',
+      'shipping': 'Free shipping on orders over Rs 30,000. Standard delivery in 3–5 business days.',
       'returns': '30-day hassle-free returns. Items must be unworn with original packaging.',
       'size-guide': 'EU sizing. For best fit, measure your foot length and refer to our size chart.',
       'contact': 'Questions? Use the chat in the corner or email support@zenstore.example.',
@@ -238,6 +239,23 @@
     link.href = href;
   };
 
+  // --- Image perf: lazy + async decode for all images ---
+  const wireImagePerf = () => {
+    const apply = (img) => {
+      if (!img.hasAttribute('loading')) img.setAttribute('loading', 'lazy');
+      if (!img.hasAttribute('decoding')) img.setAttribute('decoding', 'async');
+    };
+    document.querySelectorAll('img').forEach(apply);
+    const mo = new MutationObserver(muts => {
+      muts.forEach(m => m.addedNodes.forEach(n => {
+        if (n.nodeType !== 1) return;
+        if (n.tagName === 'IMG') apply(n);
+        n.querySelectorAll && n.querySelectorAll('img').forEach(apply);
+      }));
+    });
+    mo.observe(document.body, { childList: true, subtree: true });
+  };
+
   // --- Init ---
   ZEN.initLayout = (active) => {
     setFavicon();
@@ -246,6 +264,7 @@
     wireHeader();
     wireFooter();
     setupReveal();
+    wireImagePerf();
     loadChatbase();
   };
 

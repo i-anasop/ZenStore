@@ -7,13 +7,14 @@
   <link rel="icon" type="image/svg+xml" href="../../assets/images/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"></noscript>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
   <link rel="stylesheet" href="../../assets/css/main.css">
 </head>
 <body>
 <main>
-
   <section class="page-head">
     <div class="container">
       <div class="crumbs"><a href="../../">Home</a> · <a href="../../cart/">Cart</a> · Checkout</div>
@@ -31,26 +32,42 @@
 <script src="../../assets/js/base.js"></script>
 <script>ZEN.initLayout('');</script>
 <script>
-const t = ZEN.cartTotals();
-const root = document.getElementById('checkout-root');
-if (!t.items.length) {
-  root.innerHTML = '<div class="empty-state" style="grid-column:1/-1"><div class="empty-state-icon"><i class="fas fa-shopping-bag"></i></div><h3>Your cart is empty</h3><p>Add items to your cart before checking out.</p><a class="btn btn-primary" href="../../men/">Browse products</a></div>';
-} else {
+(function(){
+  const t = ZEN.cartTotals();
+  const root = document.getElementById('checkout-root');
+  if (!t.items.length) {
+    root.innerHTML = '<div class="empty-state" style="grid-column:1/-1"><div class="empty-state-icon"><i class="fas fa-shopping-bag"></i></div><h3>Your cart is empty</h3><p>Add items to your cart before checking out.</p><a class="btn btn-primary" href="../../men/">Browse products</a></div>';
+    return;
+  }
   const user = ZEN.getUser();
   root.innerHTML =
-    '<div class="form-card" style="max-width:none;margin:0;">' +
-      '<h3 style="margin-bottom:16px;">Delivery details</h3>' +
+    '<div>' +
       '<form id="checkout-form" novalidate>' +
-        '<div class="field"><label>Full name</label><input type="text" id="ck-name" required value="'+(user?user.name:'')+'"></div>' +
-        '<div class="field"><label>Phone</label><input type="tel" id="ck-phone" required></div>' +
-        '<div class="field"><label>Address</label><input type="text" id="ck-addr" required></div>' +
-        '<div class="form-row"><div class="field"><label>City</label><input type="text" id="ck-city" required></div><div class="field"><label>Postal code</label><input type="text" id="ck-zip" required></div></div>' +
-        '<h3 style="margin:16px 0;">Payment method</h3>' +
-        '<div class="pay-options">' +
-          '<label class="pay-opt active" id="pay-easypaisa"><input type="radio" name="pay" value="EasyPaisa" checked hidden><div class="pay-opt-icon"><i class="fas fa-mobile-screen"></i></div><div><strong>EasyPaisa</strong><span>Mobile wallet</span></div></label>' +
-          '<label class="pay-opt" id="pay-cod"><input type="radio" name="pay" value="Cash on Delivery" hidden><div class="pay-opt-icon"><i class="fas fa-money-bill-wave"></i></div><div><strong>Cash on Delivery</strong><span>Pay when you receive</span></div></label>' +
+        '<div class="section-block">' +
+          '<div class="section-block-head"><span class="num">1</span><h3>Delivery details</h3></div>' +
+          '<div class="field"><label for="ck-name">Full name</label><input type="text" id="ck-name" required value="'+(user?user.name:'')+'" placeholder="Your full name"><span class="err" id="ck-name-err"></span></div>' +
+          '<div class="form-row">' +
+            '<div class="field"><label for="ck-email">Email</label><input type="email" id="ck-email" required value="'+(user?user.email:'')+'" placeholder="you@example.com"><span class="err" id="ck-email-err"></span></div>' +
+            '<div class="field"><label for="ck-phone">Phone</label><input type="tel" id="ck-phone" required placeholder="03XX XXXXXXX"><span class="field-hint">11-digit Pakistani number (e.g. 03001234567)</span><span class="err" id="ck-phone-err"></span></div>' +
+          '</div>' +
+          '<div class="field"><label for="ck-addr">Street address</label><input type="text" id="ck-addr" required placeholder="House #, street, area"><span class="err" id="ck-addr-err"></span></div>' +
+          '<div class="form-row">' +
+            '<div class="field"><label for="ck-city">City</label><input type="text" id="ck-city" required placeholder="e.g. Karachi"><span class="err" id="ck-city-err"></span></div>' +
+            '<div class="field"><label for="ck-zip">Postal code</label><input type="text" id="ck-zip" required inputmode="numeric" maxlength="5" placeholder="5 digits"><span class="err" id="ck-zip-err"></span></div>' +
+          '</div>' +
         '</div>' +
-        '<button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-top:24px;">Place order · '+ZEN.fmt(t.total)+'</button>' +
+        '<div class="section-block">' +
+          '<div class="section-block-head"><span class="num">2</span><h3>Payment method</h3></div>' +
+          '<div class="pay-options">' +
+            '<label class="pay-opt active" id="pay-easypaisa"><input type="radio" name="pay" value="EasyPaisa" checked hidden><div class="pay-opt-icon"><i class="fas fa-mobile-screen"></i></div><div><strong>EasyPaisa</strong><span>Mobile wallet</span></div></label>' +
+            '<label class="pay-opt" id="pay-cod"><input type="radio" name="pay" value="Cash on Delivery" hidden><div class="pay-opt-icon"><i class="fas fa-money-bill-wave"></i></div><div><strong>Cash on Delivery</strong><span>Pay when you receive</span></div></label>' +
+          '</div>' +
+        '</div>' +
+        '<div class="section-block">' +
+          '<div class="section-block-head"><span class="num">3</span><h3>Review &amp; place order</h3></div>' +
+          '<p class="text-muted" style="margin-bottom:16px;font-size:.9rem;">By placing your order, you agree to our terms and confirm the details above are correct.</p>' +
+          '<button type="submit" class="btn btn-primary btn-block btn-lg" id="place-order-btn"><i class="fas fa-lock"></i> Place order · '+ZEN.fmt(t.total)+'</button>' +
+        '</div>' +
       '</form>' +
     '</div>' +
     '<aside class="cart-summary" style="position:sticky;top:90px;">' +
@@ -58,29 +75,82 @@ if (!t.items.length) {
       t.items.map(i => '<div class="summary-row"><span>'+i.product.name+(i.size?' ('+i.size+')':'')+' × '+i.qty+'</span><span>'+ZEN.fmt(i.product.price*i.qty)+'</span></div>').join('') +
       '<div class="summary-row" style="border-top:1px solid var(--c-border);margin-top:12px;padding-top:12px;"><span>Subtotal</span><span>'+ZEN.fmt(t.subtotal)+'</span></div>' +
       '<div class="summary-row"><span>Shipping</span><span>'+(t.shipping?ZEN.fmt(t.shipping):'Free')+'</span></div>' +
-      '<div class="summary-row"><span>Tax</span><span>'+ZEN.fmt(t.tax)+'</span></div>' +
+      '<div class="summary-row"><span>Tax (5%)</span><span>'+ZEN.fmt(t.tax)+'</span></div>' +
       '<div class="summary-row total"><span>Total</span><span>'+ZEN.fmt(t.total)+'</span></div>' +
+      '<div style="margin-top:16px;padding-top:16px;border-top:1px dashed var(--c-border);font-size:.8rem;color:var(--c-text-muted);">' +
+        '<div style="margin-bottom:6px;"><i class="fas fa-shield-halved" style="color:var(--c-primary);"></i> Secure checkout — your data is encrypted</div>' +
+        '<div><i class="fas fa-truck-fast" style="color:var(--c-primary);"></i> Delivery in 3–5 business days</div>' +
+      '</div>' +
     '</aside>';
+
+  // Payment radios
   document.querySelectorAll('.pay-opt').forEach(o => o.addEventListener('click', () => {
     document.querySelectorAll('.pay-opt').forEach(x => x.classList.remove('active'));
     o.classList.add('active');
     o.querySelector('input').checked = true;
   }));
-  document.getElementById('checkout-form').addEventListener('submit', (e) => {
+
+  // Validation
+  const $ = id => document.getElementById(id);
+  const phoneRe = /^03\d{9}$/;
+  const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const zipRe = /^\d{5}$/;
+  const cityRe = /^[A-Za-z\u00C0-\u017F\s.'-]{2,}$/;
+
+  const validators = {
+    'ck-name': v => v.trim().length >= 2 ? '' : 'Please enter your full name (min 2 characters)',
+    'ck-email': v => emailRe.test(v.trim()) ? '' : 'Enter a valid email address',
+    'ck-phone': v => phoneRe.test(v.replace(/\s|-/g, '')) ? '' : 'Enter an 11-digit number starting with 03 (e.g. 03001234567)',
+    'ck-addr': v => v.trim().length >= 8 ? '' : 'Address must be at least 8 characters',
+    'ck-city': v => cityRe.test(v.trim()) ? '' : 'Enter a valid city name',
+    'ck-zip': v => zipRe.test(v.trim()) ? '' : 'Postal code must be exactly 5 digits',
+  };
+
+  function setErr(id, msg) {
+    $(id+'-err').textContent = msg || '';
+    $(id).classList.toggle('invalid', !!msg);
+    $(id).classList.toggle('valid', !msg && $(id).value.trim().length > 0);
+  }
+
+  Object.keys(validators).forEach(id => {
+    const el = $(id);
+    el.addEventListener('blur', () => setErr(id, validators[id](el.value)));
+    el.addEventListener('input', () => { if (el.classList.contains('invalid')) setErr(id, validators[id](el.value)); });
+  });
+  // Numeric-only for zip & phone
+  ['ck-zip','ck-phone'].forEach(id => {
+    $(id).addEventListener('input', () => { $(id).value = $(id).value.replace(/[^\d]/g, ''); });
+  });
+
+  $('checkout-form').addEventListener('submit', (e) => {
     e.preventDefault();
-    const name = document.getElementById('ck-name').value.trim();
-    const phone = document.getElementById('ck-phone').value.trim();
-    const addr = document.getElementById('ck-addr').value.trim();
-    const city = document.getElementById('ck-city').value.trim();
-    const zip = document.getElementById('ck-zip').value.trim();
-    if (!name || !phone || !addr || !city || !zip) { ZEN.toast('Please fill in all delivery details.', 'error'); return; }
+    let firstInvalid = null;
+    Object.keys(validators).forEach(id => {
+      const msg = validators[id]($(id).value);
+      setErr(id, msg);
+      if (msg && !firstInvalid) firstInvalid = id;
+    });
+    if (firstInvalid) {
+      ZEN.toast('Please fix the highlighted fields.', 'error');
+      const el = $(firstInvalid);
+      el.focus();
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
     const method = document.querySelector('input[name="pay"]:checked').value;
     const totals = ZEN.cartTotals();
-    const order = ZEN.createOrder({ user: ZEN.getUser(), address: { name, phone, addr, city, zip }, payment: { method }, items: totals.items, totals: { subtotal: totals.subtotal, shipping: totals.shipping, tax: totals.tax, total: totals.total } });
+    const userObj = ZEN.getUser() || { name: $('ck-name').value.trim(), email: $('ck-email').value.trim() };
+    ZEN.createOrder({
+      user: { ...userObj, name: $('ck-name').value.trim(), email: $('ck-email').value.trim() },
+      address: { name: $('ck-name').value.trim(), phone: $('ck-phone').value.trim(), addr: $('ck-addr').value.trim(), city: $('ck-city').value.trim(), zip: $('ck-zip').value.trim() },
+      payment: { method },
+      items: totals.items,
+      totals: { subtotal: totals.subtotal, shipping: totals.shipping, tax: totals.tax, total: totals.total },
+    });
     ZEN.cartClear();
     location.href = ZEN.url('account/thankyou/');
   });
-}
+})();
 </script>
 </body>
 </html>

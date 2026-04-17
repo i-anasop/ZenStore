@@ -209,25 +209,9 @@
     els.forEach(e => io.observe(e));
   };
 
-  // --- Chatbase chatbot ---
-  const loadChatbase = () => {
-    if (window.chatbase && window.chatbase('getState') === 'initialized') return;
-    window.chatbase = (...args) => {
-      if (!window.chatbase.q) window.chatbase.q = [];
-      window.chatbase.q.push(args);
-    };
-    window.chatbase = new Proxy(window.chatbase, {
-      get(t, p) { if (p === 'q') return t.q; return (...a) => t(p, ...a); }
-    });
-    const onLoad = () => {
-      const s = document.createElement('script');
-      s.src = 'https://www.chatbase.co/embed.min.js';
-      s.id = 'hTjYrNkQ_gXIhrcTkmXMm';
-      s.domain = 'www.chatbase.co';
-      document.body.appendChild(s);
-    };
-    if (document.readyState === 'complete') onLoad();
-    else window.addEventListener('load', onLoad);
+  // --- Chat widget (built-in, always works) ---
+  const loadChat = () => {
+    if (ZEN.initChat) ZEN.initChat();
   };
 
   // --- Favicon ---
@@ -265,7 +249,7 @@
     wireFooter();
     setupReveal();
     wireImagePerf();
-    loadChatbase();
+    loadChat();
   };
 
   // Update cart badge

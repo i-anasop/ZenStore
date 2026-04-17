@@ -222,7 +222,7 @@
     const onLoad = () => {
       const s = document.createElement('script');
       s.src = 'https://www.chatbase.co/embed.min.js';
-      s.id = 'unEJS8Y20W90Uwi1uxa9v';
+      s.id = 'hTjYrNkQ_gXIhrcTkmXMm';
       s.domain = 'www.chatbase.co';
       document.body.appendChild(s);
     };

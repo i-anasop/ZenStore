@@ -7,14 +7,17 @@
   ZEN.createOrder = ({ user, address, payment, items, totals }) => {
     const orders = ZEN.getOrders();
     const id = 'ZEN-' + Date.now().toString(36).toUpperCase().slice(-6);
+    // EasyPaisa orders sit in awaiting-review until the team verifies the transfer
+    const initialStatus = (payment && payment.method === 'EasyPaisa') ? 'pending' : 'pending';
     const order = {
       id,
       user: user ? { name: user.name, email: user.email } : { name: address.name, email: address.email || '' },
       address,
-      payment,
+      payment: payment || {},
       items: items.map(i => ({ id: i.id, name: i.product.name, price: i.product.price, qty: i.qty, size: i.size })),
       totals,
-      status: 'pending',
+      status: initialStatus,
+      paymentStatus: payment && payment.method === 'EasyPaisa' ? 'awaiting-review' : 'cod',
       createdAt: Date.now(),
     };
     orders.unshift(order);

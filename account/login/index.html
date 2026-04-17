@@ -4,9 +4,9 @@
     <title>Zen | Login</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="icon" href="assets/images/logo.jpg" type="img/svg">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <script src="assets/js/bot.js"></script>
+    <link rel="icon" href="../../assets/images/logo.jpg" type="img/svg">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <script src="../../assets/js/bot.js"></script>
 <style>
         body {
             margin: 0;
@@ -184,7 +184,7 @@
         }
 
         .right-panel {
-            background-image: url('assets/images/extras/login.jpg');
+            background-image: url('../../assets/images/extras/login.jpg');
             background-size: cover; 
             background-position: center; 
             display: flex;
@@ -267,26 +267,26 @@
  <!-- Header -->
  <header class="transparent-header">
     <div class="header-container">
-        <a href="index.html"> 
+        <a href="../../"> 
         <div class="hlogo">
-        <img src="assets/images/logo.jpg" type="img/svg" alt="Company Logo">
+        <img src="../../assets/images/logo.jpg" type="img/svg" alt="Company Logo">
         </div>
         <p id="pp">Zen Store</p></a>  
         <div class="nav-links">
-        <a href="index.html">Home</a>
+        <a href="../../">Home</a>
         <div class="product-dropdown">
             <a href="#">Product</a>
             <ul class="product-menu">
-                <li><a href="men.html">Men</a></li>
-                <li><a href="women.html">Women</a></li>
-                <li><a href="sports.html">Sports</a></li>
+                <li><a href="../../men/">Men</a></li>
+                <li><a href="../../women/">Women</a></li>
+                <li><a href="../../sports/">Sports</a></li>
             </ul>
         </div>
-        <a href="cart.html">Cart</a>
+        <a href="../../cart/">Cart</a>
         </div>
         <div class="navsym">
             <div class="profile-dropdown">
-                <a href="profile.html"><i class="fas fa-user"></i></a>
+                <a href="../../account/profile/"><i class="fas fa-user"></i></a>
                 </ul>
             </div>
         </div>
@@ -298,7 +298,7 @@
 
         <div class="left-panel">
             <div class="rlogo">
-                <img src="assets/svg/02.rlogo.svg" alt="Logo">
+                <img src="../../assets/svg/02.rlogo.svg" alt="Logo">
             </div>
             <h1>Welcome back to Zen</h1>
             <p>Enter your credentials to continue</p>
@@ -318,14 +318,14 @@
             </form>
             <div class="social-buttons">
                 <a href="https://accounts.google.com/o/oauth2/v2/auth" class="social-btn google">
-                    <img src="assets/images/socials/glogo.png" alt="Google" />Google</a>
+                    <img src="../../assets/images/socials/glogo.png" alt="Google" />Google</a>
                 <a href="https://www.facebook.com/v12.0/dialog/oauth" class="social-btn facebook">
-                    <img src="assets/images/socials/fblogo.png" alt="Facebook" />Facebook</a>
+                    <img src="../../assets/images/socials/fblogo.png" alt="Facebook" />Facebook</a>
             </div>
         </div>
         <div class="right-panel">
             <h2>New to Zen?</h2>
-            <a href="signup.html"><button>Sign Up</button></a>
+            <a href="../../account/signup/"><button>Sign Up</button></a>
         </div>
     </div>
     
@@ -399,7 +399,7 @@
 
             if (enteredEmail === storedEmail && enteredPassword === storedPassword) {
                 errorMessage.style.display = "none"; // Hide error message
-                window.location.href = "checkout.html"; // Redirect to home page
+                window.location.href = "../../account/checkout/"; // Redirect to home page
             } else {
                 errorMessage.textContent = "Invalid email or password.";
                 errorMessage.style.display = "block"; // Show error message

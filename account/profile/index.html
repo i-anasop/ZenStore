@@ -3,8 +3,8 @@
 <head>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="icon" href="assets/images/logo.jpg" type="img/svg">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="icon" href="../../assets/images/logo.jpg" type="img/svg">
     <title>Zen Shoes | Profile</title>
 <style>
         body {
@@ -125,22 +125,22 @@
  <!-- Header -->
  <header class="transparent-header">
     <div class="header-container">
-        <a href="index.html"> 
+        <a href="../../"> 
         <div class="hlogo">
-        <img src="assets/images/logo.jpg" type="img/svg" alt="Company Logo">
+        <img src="../../assets/images/logo.jpg" type="img/svg" alt="Company Logo">
         </div>
         <p id="pp">Zen Store</p></a>  
         <div class="nav-links">
-        <a href="index.html">Home</a>
+        <a href="../../">Home</a>
         <div class="product-dropdown">
             <a href="#">Product</a>
             <ul class="product-menu">
-                <li><a href="men.html">Men</a></li>
-                <li><a href="women.html">Women</a></li>
-                <li><a href="sports.html">Sports</a></li>
+                <li><a href="../../men/">Men</a></li>
+                <li><a href="../../women/">Women</a></li>
+                <li><a href="../../sports/">Sports</a></li>
             </ul>
         </div>
-        <a href="cart.html">Cart</a>
+        <a href="../../cart/">Cart</a>
         </div>
         <div class="navsym">
             <div class="search-bar">
@@ -149,7 +149,7 @@
                 <a href="#"><i class="fas fa-search"></i></a></div>
             </div>
             <div class="profile-dropdown">
-                <a href="profile.html"><i class="fas fa-user"></i></a>
+                <a href="../../account/profile/"><i class="fas fa-user"></i></a>
                 </ul>
             </div>
         </div>
@@ -177,7 +177,7 @@
                 <div class="card-body">
                     <!-- Profile Picture Section -->
                     <div class="media align-items-center">
-                        <img id="profile-image" src="assets/images/About/pic03.jpg" alt="Profile Picture" class="d-block ui-w-80 rounded-circle">
+                        <img id="profile-image" src="../../assets/images/About/pic03.jpg" alt="Profile Picture" class="d-block ui-w-80 rounded-circle">
                         <div class="media-body ml-4">
                             <label class="btn btn-outline-primary">
                                 Upload new photo
@@ -284,7 +284,7 @@
             const username = localStorage.getItem("userUsername") || "";
             const name = localStorage.getItem("userName") || "";
             const email = localStorage.getItem("userEmail") || "";
-            const profilePic = localStorage.getItem("profilePic") || "assets/images/About/pic03.jpg"; // Default profile image
+            const profilePic = localStorage.getItem("profilePic") || "../../assets/images/About/pic03.jpg"; // Default profile image
     
             // Fill input fields with stored values
             document.getElementById("profile-username").value = username;
@@ -333,7 +333,7 @@
             localStorage.removeItem("profilePic");
     
             // Reset profile image and fields
-            document.getElementById("profile-image").src = "assets/images/About/pic03.jpg";
+            document.getElementById("profile-image").src = "../../assets/images/About/pic03.jpg";
             document.getElementById("profile-username").value = "";
             document.getElementById("profile-name").value = "";
             document.getElementById("profile-email").value = "";

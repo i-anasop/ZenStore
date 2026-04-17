@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link rel="icon" href="assets/images/logo.jpg" type="img/svg">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <script src="assets/js/bot.js"></script>
+    <link rel="icon" href="../assets/images/logo.jpg" type="img/svg">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <script src="../assets/js/bot.js"></script>
     <title>Zen | Product Details</title>
 <style>
         body {
@@ -130,27 +130,27 @@
  <!-- Header -->
  <header class="transparent-header">
     <div class="header-container">
-        <a href="index.html"> 
+        <a href="../"> 
         <div class="hlogo">
-        <img src="assets/images/logo.jpg" type="img/svg" alt="Company Logo">
+        <img src="../assets/images/logo.jpg" type="img/svg" alt="Company Logo">
         </div>
         <p id="pp">Zen Store</p></a>  
         <div class="nav-links">
-        <a href="index.html">Home</a>
+        <a href="../">Home</a>
         <div class="product-dropdown">
             <a href="#">Product</a>
             <ul class="product-menu">
-                <li><a href="men.html">Men</a></li>
-                <li><a href="women.html">Women</a></li>
-                <li><a href="sports.html">Sports</a></li>
+                <li><a href="../men/">Men</a></li>
+                <li><a href="../women/">Women</a></li>
+                <li><a href="../sports/">Sports</a></li>
             </ul>
         </div>
-        <a href="cart.html">Cart</a>
+        <a href="../cart/">Cart</a>
         </div>
         <div class="navsym">
             
             <div class="profile-dropdown">
-                <a href="profile.html"><i class="fas fa-user"></i></a>
+                <a href="../account/profile/"><i class="fas fa-user"></i></a>
                 </ul>
             </div>
         </div>
@@ -238,7 +238,7 @@
             notification.textContent = `${productName} added to cart!`;
             
             let viewCartLink = document.createElement('a');
-            viewCartLink.href = 'cart.html';
+            viewCartLink.href = '../cart/';
             viewCartLink.textContent = "View Cart";
             viewCartLink.style.color = "yellow";
             viewCartLink.style.marginLeft = "10px";

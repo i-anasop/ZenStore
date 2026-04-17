@@ -4,9 +4,9 @@
     <title>Zen | Signup</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="icon" href="assets/images/logo.jpg" type="img/svg">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <script src="assets/js/bot.js"></script>
+    <link rel="icon" href="../../assets/images/logo.jpg" type="img/svg">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <script src="../../assets/js/bot.js"></script>
 <style>
         body {
             margin: 0;
@@ -205,22 +205,22 @@
  <!-- Header -->
  <header class="transparent-header">
     <div class="header-container">
-        <a href="index.html"> 
+        <a href="../../"> 
         <div class="hlogo">
-        <img src="assets/images/logo.jpg" type="img/svg" alt="Company Logo">
+        <img src="../../assets/images/logo.jpg" type="img/svg" alt="Company Logo">
         </div>
         <p id="pp">Zen Store</p></a>  
         <div class="nav-links">
-        <a href="index.html">Home</a>
+        <a href="../../">Home</a>
         <div class="product-dropdown">
             <a href="#">Product</a>
             <ul class="product-menu">
-                <li><a href="men.html">Men</a></li>
-                <li><a href="women.html">Women</a></li>
-                <li><a href="sports.html">Sports</a></li>
+                <li><a href="../../men/">Men</a></li>
+                <li><a href="../../women/">Women</a></li>
+                <li><a href="../../sports/">Sports</a></li>
             </ul>
         </div>
-        <a href="cart.html">Cart</a>
+        <a href="../../cart/">Cart</a>
         </div>
         <div class="navsym">
             <div class="search-bar">
@@ -231,15 +231,15 @@
             <div class="profile-dropdown">
                 <a href="#"><i class="fas fa-user"></i></a>
                 <ul class="dropdown-menu">
-                <li><a href="profile.html">My Profile</a></li>
-                <li><a href="profile.html">Dashboard</a></li>
+                <li><a href="../../account/profile/">My Profile</a></li>
+                <li><a href="../../account/profile/">Dashboard</a></li>
                 </ul>
             </div>
         </div>
     </div>
 </header>
 
-    <div class="bg"><img src="assets/images/extras/bg1.png" alt="background"></div>
+    <div class="bg"><img src="../../assets/images/extras/bg1.png" alt="background"></div>
     
     <div class="signup-container">
         <h1>Create an Account</h1>
@@ -255,14 +255,14 @@
         <p class="alternative-signup">or sign up with</p>
         <div class="social-buttons">
             <a href="https://accounts.google.com/o/oauth2/v2/auth" class="social-btn google">
-                <img src="assets/images/socials/glogo.png" alt="Google" />Google</a>
+                <img src="../../assets/images/socials/glogo.png" alt="Google" />Google</a>
             <a href="https://www.facebook.com/v12.0/dialog/oauth" class="social-btn facebook">
-                <img src="assets/images/socials/fblogo.png" alt="Facebook" />Facebook</a>
+                <img src="../../assets/images/socials/fblogo.png" alt="Facebook" />Facebook</a>
             <a href="https://www.linkedin.com/oauth/v2/authorization" class="social-btn linkedin">
-                <img src="assets/images/socials/llogo.png" alt="LinkedIn" />LinkedIn</a>
+                <img src="../../assets/images/socials/llogo.png" alt="LinkedIn" />LinkedIn</a>
         </div>
         <div class="footer">
-            Already have an account? <a href="login.html">Sign In</a>
+            Already have an account? <a href="../../account/login/">Sign In</a>
         </div>
     </div>
 
@@ -288,7 +288,7 @@
             localStorage.setItem("userPassword", password);
 
             alert("Signup successful! You can now log in.");
-            window.location.href = "login.html"; // Redirect to login page
+            window.location.href = "../../account/login/"; // Redirect to login page
         } else {
             alert("Please fill in all fields.");
         }
@@ -309,7 +309,7 @@
             localStorage.setItem("userPassword", password);
 
             alert("Signup successful!");
-            window.location.href = "login.html"; // Redirect to profile page
+            window.location.href = "../../account/login/"; // Redirect to profile page
         } else {
             alert("Please fill in all fields.");
         }

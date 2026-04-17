@@ -33,10 +33,15 @@ const root = document.getElementById('thanks-root');
 if (!order) {
   root.innerHTML = '<div class="empty-state-icon"><i class="fas fa-circle-info"></i></div><h1>No recent order</h1><p>Looks like you haven\'t placed an order yet.</p><a class="btn btn-primary" href="../../">Back to home</a>';
 } else {
+  const isEasypaisa = order.payment && order.payment.method === 'EasyPaisa';
+  const reviewBanner = isEasypaisa
+    ? '<div class="review-banner"><i class="fas fa-clock"></i><div><strong>We\'re reviewing your payment</strong><span>Your EasyPaisa transfer'+(order.payment.txId?' (TID: <b>'+order.payment.txId+'</b>)':'')+' is being verified by our team. Once confirmed, your order will move to <b>processing</b> and we\'ll dispatch it within 24 hours. You can track the status anytime in <a href="../profile/">My account</a>.</span></div></div>'
+    : '';
   root.innerHTML =
     '<div class="thanks-check"><i class="fas fa-check"></i></div>' +
     '<h1>Thank you for your order!</h1>' +
-    '<p>Your order <strong>#'+order.id+'</strong> has been received and is being processed. A confirmation will be sent to '+order.user.email+'.</p>' +
+    '<p>Your order <strong>#'+order.id+'</strong> has been received'+(isEasypaisa?' and is awaiting payment review':' and is being processed')+'. A confirmation will be sent to '+order.user.email+'.</p>' +
+    reviewBanner +
     '<div class="card" style="text-align:left;margin:24px auto;max-width:480px;">' +
       '<h3 style="margin-bottom:12px;">Order summary</h3>' +
       order.items.map(i => '<div class="summary-row"><span>'+i.name+' × '+i.qty+'</span><span>'+ZEN.fmt(i.price * i.qty)+'</span></div>').join('') +

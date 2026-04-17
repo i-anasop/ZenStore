@@ -67,15 +67,34 @@ if (!ZEN.requireAuth()) { /* redirected */ } else {
     '</div>';
   document.getElementById('logout-btn').addEventListener('click', () => { ZEN.logout(); ZEN.toast('Signed out'); setTimeout(() => location.href = ZEN.url(''), 400); });
   document.getElementById('edit-name-btn').addEventListener('click', () => {
-    const newName = prompt('Update your name:', user.name);
-    if (!newName || newName.trim().length < 2) { if (newName !== null) ZEN.toast('Name must be at least 2 characters', 'error'); return; }
-    const updated = { ...user, name: newName.trim() };
-    ZEN.ls.set('user', updated);
-    const users = ZEN.ls.get('users', []);
-    const i = users.findIndex(u => u.email === user.email);
-    if (i >= 0) { users[i] = { ...users[i], name: newName.trim() }; ZEN.ls.set('users', users); }
-    ZEN.toast('Name updated', 'success');
-    setTimeout(() => location.reload(), 400);
+    const card = document.querySelector('.profile-card');
+    if (card.querySelector('.edit-inline')) return;
+    const editor = document.createElement('div');
+    editor.className = 'edit-inline';
+    editor.innerHTML =
+      '<input type="text" class="input" id="edit-name-input" value="'+user.name.replace(/"/g,'&quot;')+'" maxlength="60">' +
+      '<div style="display:flex;gap:8px;margin-top:8px;">' +
+        '<button class="btn btn-primary" id="save-name-btn" style="flex:1;"><i class="fas fa-check"></i> Save</button>' +
+        '<button class="btn btn-ghost" id="cancel-name-btn" style="flex:1;">Cancel</button>' +
+      '</div>';
+    document.getElementById('edit-name-btn').insertAdjacentElement('beforebegin', editor);
+    const input = document.getElementById('edit-name-input');
+    input.focus(); input.select();
+    document.getElementById('cancel-name-btn').addEventListener('click', () => editor.remove());
+    document.getElementById('save-name-btn').addEventListener('click', () => {
+      const newName = (input.value || '').trim();
+      if (newName.length < 2) { ZEN.toast('Name must be at least 2 characters', 'error'); input.focus(); return; }
+      ZEN.ls.set('user', { ...user, name: newName });
+      const users = ZEN.ls.get('users', []);
+      const i = users.findIndex(u => u.email === user.email);
+      if (i >= 0) { users[i] = { ...users[i], name: newName }; ZEN.ls.set('users', users); }
+      ZEN.toast('Name updated', 'success');
+      setTimeout(() => location.reload(), 400);
+    });
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') { e.preventDefault(); document.getElementById('save-name-btn').click(); }
+      if (e.key === 'Escape') editor.remove();
+    });
   });
 }
 </script>

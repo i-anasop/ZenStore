@@ -34,13 +34,7 @@ if (!p) {
   const old = p.oldPrice ? '<small>'+ZEN.fmt(p.oldPrice)+'</small>' : '';
   root.innerHTML =
     '<div class="pd-gallery">' +
-      '<div class="pd-main-img"><img id="pd-main" src="'+ZEN.url(p.image)+'" alt="'+p.name+'"></div>' +
-      '<div class="pd-thumbs">' +
-        [1,2,3,4].map(i => {
-          const img = p.image.replace(/\d+\.png$/, String(i).padStart(2,'0')+'.png');
-          return '<button class="pd-thumb '+(i===1?'active':'')+'" data-img="'+ZEN.url(img)+'"><img src="'+ZEN.url(img)+'" alt="thumb '+i+'"></button>';
-        }).join('') +
-      '</div>' +
+      '<div class="pd-main-img"><img id="pd-main" src="'+ZEN.url(p.image)+'" alt="'+p.name+'"><button class="pd-fav" id="pd-fav" aria-label="Save to wishlist"><i class="far fa-heart"></i></button></div>' +
     '</div>' +
     '<div class="pd-info">' +
       '<span class="pd-cat">'+ZEN.cap(p.category)+' · '+ZEN.cap(p.subcategory.replace(/-/g,' '))+'</span>' +
@@ -64,11 +58,14 @@ if (!p) {
     b.classList.add('active');
     selectedSize = +b.dataset.size;
   }));
-  document.querySelectorAll('.pd-thumb').forEach(t => t.addEventListener('click', () => {
-    document.querySelectorAll('.pd-thumb').forEach(x => x.classList.remove('active'));
-    t.classList.add('active');
-    document.getElementById('pd-main').src = t.dataset.img;
-  }));
+  document.getElementById('pd-fav').addEventListener('click', (e) => {
+    const btn = e.currentTarget;
+    btn.classList.toggle('active');
+    const icon = btn.querySelector('i');
+    icon.classList.toggle('fas');
+    icon.classList.toggle('far');
+    ZEN.toast(btn.classList.contains('active') ? 'Saved to wishlist' : 'Removed from wishlist', 'success');
+  });
   document.getElementById('add-to-cart').addEventListener('click', () => ZEN.cartAdd(p.id, 1, selectedSize));
   document.getElementById('buy-now').addEventListener('click', () => { ZEN.cartAdd(p.id, 1, selectedSize); setTimeout(() => location.href = ZEN.url('account/checkout/'), 300); });
 }

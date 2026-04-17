@@ -30,6 +30,7 @@
           <div class="hero-stat"><strong>500+</strong><span>Styles</span></div>
           <div class="hero-stat"><strong>4.9★</strong><span>Rating</span></div>
         </div>
+        <div class="hero-trending" id="hero-trending"></div>
       </div>
       <div class="hero-visual reveal">
         <img src="assets/images/extras/shoe.png" alt="Featured shoe">
@@ -109,11 +110,22 @@ function productCardHtml(p) {
     '<div class="prod-row"><span class="prod-price">'+ZEN.fmt(p.price)+old+'</span>'+
     '<button class="prod-add" onclick="event.preventDefault();event.stopPropagation();ZEN.cartAdd(\''+p.id+'\');"><i class="fas fa-plus"></i></button></div></div></a>';
 }
-// Lookbook (visual grid of trending product images)
+// Lookbook (visual grid of trending product images) — 4 tiles to fit 3x2 layout
 const lb = document.getElementById('lookbook-grid');
 if (lb) {
-  const picks = [...ZEN.products].sort(() => Math.random() - 0.5).slice(0, 6);
+  const picks = [...ZEN.products].sort(() => Math.random() - 0.5).slice(0, 4);
   lb.innerHTML = picks.map(p => '<a class="lb-tile" href="'+ZEN.url('product/?id='+p.id)+'"><img src="'+ZEN.url(p.image)+'" alt="'+p.name+'"><span class="lb-overlay"><i class="fas fa-arrow-up-right-from-square"></i></span></a>').join('');
+}
+
+// Hero trending thumbs
+const ht = document.getElementById('hero-trending');
+if (ht) {
+  const thumbs = [...ZEN.products].sort(() => Math.random() - 0.5).slice(0, 4);
+  ht.innerHTML = '<span class="hero-trending-label">Trending</span>' +
+    '<div class="hero-trending-thumbs">' +
+      thumbs.map(p => '<a href="'+ZEN.url('product/?id='+p.id)+'" title="'+p.name+'"><img src="'+ZEN.url(p.image)+'" alt="'+p.name+'"></a>').join('') +
+    '</div>' +
+    '<a class="hero-trending-link" href="'+ZEN.url('men/')+'">Shop now <i class="fas fa-arrow-right"></i></a>';
 }
 
 document.getElementById('newsletter-form').addEventListener('submit', (e) => {

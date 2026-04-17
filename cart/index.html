@@ -35,7 +35,7 @@ function render() {
   const root = document.getElementById('cart-root');
   const t = ZEN.cartTotals();
   if (!t.items.length) {
-    root.innerHTML = '<div class="empty-state"><div class="empty-state-icon"><i class="fas fa-shopping-bag"></i></div><h3>Your cart is empty</h3><p>Looks like you haven\'t added anything yet. Start exploring our collections.</p><a class="btn btn-primary" href="../men/">Browse products</a></div>';
+    root.innerHTML = '<div class="empty-state"><div class="empty-state-icon"><i class="fas fa-shopping-bag"></i></div><h3>Your cart is empty</h3><a class="btn btn-primary" href="../men/">Browse products</a></div>';
     return;
   }
   root.innerHTML =

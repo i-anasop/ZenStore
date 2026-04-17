@@ -19,17 +19,16 @@
   <section class="hero container">
     <div class="hero-grid">
       <div class="hero-content reveal">
-        <span class="hero-eyebrow"><i class="fas fa-bolt"></i> New season is here</span>
+        <span class="hero-eyebrow"><i class="fas fa-bolt"></i> New season</span>
         <h1>Step into your <span class="accent">next chapter.</span></h1>
-        <p class="lead">Hand-picked footwear designed for everyday comfort and elevated style. Free shipping on orders over Rs 30,000.</p>
         <div class="hero-actions">
           <a href="men/" class="btn btn-primary btn-lg">Shop Men <i class="fas fa-arrow-right"></i></a>
           <a href="women/" class="btn btn-secondary btn-lg">Shop Women</a>
         </div>
         <div class="hero-stats">
-          <div class="hero-stat"><strong>10k+</strong><span>Happy customers</span></div>
-          <div class="hero-stat"><strong>500+</strong><span>Premium styles</span></div>
-          <div class="hero-stat"><strong>4.9★</strong><span>Average rating</span></div>
+          <div class="hero-stat"><strong>10k+</strong><span>Customers</span></div>
+          <div class="hero-stat"><strong>500+</strong><span>Styles</span></div>
+          <div class="hero-stat"><strong>4.9★</strong><span>Rating</span></div>
         </div>
       </div>
       <div class="hero-visual reveal">
@@ -39,58 +38,49 @@
   </section>
 
   <section class="section container reveal">
-    <div class="features">
-      <div class="feature"><div class="feature-icon"><i class="fas fa-truck-fast"></i></div><div><strong>Free Shipping</strong><span>On orders over Rs 30,000</span></div></div>
-      <div class="feature"><div class="feature-icon"><i class="fas fa-rotate-left"></i></div><div><strong>30-Day Returns</strong><span>Hassle-free exchanges</span></div></div>
-      <div class="feature"><div class="feature-icon"><i class="fas fa-shield-halved"></i></div><div><strong>Secure Checkout</strong><span>Your data is protected</span></div></div>
-      <div class="feature"><div class="feature-icon"><i class="fas fa-headset"></i></div><div><strong>24/7 Support</strong><span>We're here to help</span></div></div>
+    <div class="features features-compact">
+      <div class="feature"><div class="feature-icon"><i class="fas fa-truck-fast"></i></div><div><strong>Free Shipping</strong></div></div>
+      <div class="feature"><div class="feature-icon"><i class="fas fa-rotate-left"></i></div><div><strong>30-Day Returns</strong></div></div>
+      <div class="feature"><div class="feature-icon"><i class="fas fa-shield-halved"></i></div><div><strong>Secure Checkout</strong></div></div>
+      <div class="feature"><div class="feature-icon"><i class="fas fa-headset"></i></div><div><strong>24/7 Support</strong></div></div>
     </div>
   </section>
 
   <section class="section container">
-    <div class="section-head reveal">
-      <div>
-        <span class="eyebrow">Shop by Style</span>
-        <h2>Find your perfect fit</h2>
-      </div>
+    <div class="section-head reveal compact">
+      <h2>Shop by category</h2>
     </div>
     <div class="cat-grid">
-      <a href="men/" class="cat-card reveal">
+      <a href="men/" class="cat-card cat-card-visual reveal">
         <img src="assets/images/collections/collection-1.jpg" alt="Men's collection">
-        <h3>Men</h3>
-        <p>Sneakers, boots, formal & more</p>
-        <span class="cta">Shop Men <i class="fas fa-arrow-right"></i></span>
+        <span class="cat-label">Men <i class="fas fa-arrow-right"></i></span>
       </a>
-      <a href="women/" class="cat-card reveal">
+      <a href="women/" class="cat-card cat-card-visual reveal">
         <img src="assets/images/collections/collection-2.jpg" alt="Women's collection">
-        <h3>Women</h3>
-        <p>Heels, flats, joggers & sandals</p>
-        <span class="cta">Shop Women <i class="fas fa-arrow-right"></i></span>
+        <span class="cat-label">Women <i class="fas fa-arrow-right"></i></span>
       </a>
-      <a href="sports/" class="cat-card reveal">
+      <a href="sports/" class="cat-card cat-card-visual reveal">
         <img src="assets/images/collections/collection-3.jpg" alt="Sports collection">
-        <h3>Sports</h3>
-        <p>Running, basketball & training</p>
-        <span class="cta">Shop Sports <i class="fas fa-arrow-right"></i></span>
+        <span class="cat-label">Sports <i class="fas fa-arrow-right"></i></span>
       </a>
     </div>
   </section>
 
   <section class="section container">
     <div class="section-head reveal">
-      <div>
-        <span class="eyebrow">Trending Now</span>
-        <h2>Featured products</h2>
-      </div>
+      <h2>Featured</h2>
       <a href="men/" class="head-link">View all <i class="fas fa-arrow-right"></i></a>
     </div>
     <div class="prod-grid" id="featured-grid"></div>
   </section>
 
+  <section class="section container reveal">
+    <div class="lookbook" id="lookbook-grid"></div>
+  </section>
+
   <section class="container">
     <div class="newsletter reveal">
-      <h2>Be the first to know</h2>
-      <p>Subscribe for early access to drops, exclusive offers, and styling tips delivered straight to your inbox.</p>
+      <h2>Get early access</h2>
       <form id="newsletter-form">
         <input type="email" placeholder="your@email.com" required>
         <button type="submit" class="btn">Subscribe</button>
@@ -119,6 +109,13 @@ function productCardHtml(p) {
     '<div class="prod-row"><span class="prod-price">'+ZEN.fmt(p.price)+old+'</span>'+
     '<button class="prod-add" onclick="event.preventDefault();event.stopPropagation();ZEN.cartAdd(\''+p.id+'\');"><i class="fas fa-plus"></i></button></div></div></a>';
 }
+// Lookbook (visual grid of trending product images)
+const lb = document.getElementById('lookbook-grid');
+if (lb) {
+  const picks = [...ZEN.products].sort(() => Math.random() - 0.5).slice(0, 6);
+  lb.innerHTML = picks.map(p => '<a class="lb-tile" href="'+ZEN.url('product/?id='+p.id)+'"><img src="'+ZEN.url(p.image)+'" alt="'+p.name+'"><span class="lb-overlay"><i class="fas fa-arrow-up-right-from-square"></i></span></a>').join('');
+}
+
 document.getElementById('newsletter-form').addEventListener('submit', (e) => {
   e.preventDefault();
   ZEN.toast('Thanks for subscribing!', 'success');

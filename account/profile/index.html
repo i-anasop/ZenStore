@@ -46,19 +46,33 @@ if (!ZEN.requireAuth()) { /* redirected */ } else {
       '<div class="order-items">' + o.items.map(i => '<div class="order-item"><span>'+i.name+(i.size?' (Size '+i.size+')':'')+' × '+i.qty+'</span><span>'+ZEN.fmt(i.price * i.qty)+'</span></div>').join('') + '</div>' +
       '<div class="order-total"><span>Total</span><span>'+ZEN.fmt(o.totals.total)+'</span></div></div>';
   }
+  const tier = orders.length >= 5 ? 'Gold member' : orders.length >= 1 ? 'Member' : 'New member';
+  const lastOrder = orders.length ? new Date(orders[0].createdAt).toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' }) : '—';
   root.innerHTML =
     '<aside class="profile-card">' +
-      '<div class="profile-avatar">'+initials+'</div>' +
-      '<h3 id="profile-name">'+user.name+'</h3>' +
-      '<p class="text-muted" style="font-size:.85rem;margin-bottom:16px;">'+user.email+'</p>' +
-      '<button class="btn btn-secondary btn-block" id="edit-name-btn" style="margin-bottom:8px;"><i class="fas fa-pen"></i> Edit name</button>' +
-      '<button class="btn btn-secondary btn-block" id="logout-btn"><i class="fas fa-right-from-bracket"></i> Sign out</button>' +
+      '<div class="profile-cover"></div>' +
+      '<div class="profile-card-body">' +
+        '<div class="profile-avatar">'+initials+'</div>' +
+        '<div class="profile-name-wrap"><h3 id="profile-name">'+user.name+'</h3><span class="member-badge"><i class="fas fa-star"></i> '+tier+'</span></div>' +
+        '<p class="profile-email">'+user.email+'</p>' +
+        '<div class="profile-mini-stats">' +
+          '<div class="profile-mini-stat"><strong>'+orders.length+'</strong><span>Orders</span></div>' +
+          '<div class="profile-mini-stat"><strong>'+memberSinceStr+'</strong><span>Joined</span></div>' +
+        '</div>' +
+        '<button class="btn btn-secondary btn-block" id="edit-name-btn"><i class="fas fa-pen"></i> Edit name</button>' +
+        '<button class="btn btn-secondary btn-block" id="logout-btn"><i class="fas fa-right-from-bracket"></i> Sign out</button>' +
+      '</div>' +
     '</aside>' +
     '<div>' +
       '<div class="profile-stats">' +
         '<div class="profile-stat"><div class="profile-stat-icon"><i class="fas fa-box"></i></div><div><div class="profile-stat-num">'+orders.length+'</div><div class="profile-stat-label">Total orders</div></div></div>' +
         '<div class="profile-stat"><div class="profile-stat-icon"><i class="fas fa-wallet"></i></div><div><div class="profile-stat-num">'+ZEN.fmt(totalSpent)+'</div><div class="profile-stat-label">Total spent</div></div></div>' +
-        '<div class="profile-stat"><div class="profile-stat-icon"><i class="fas fa-calendar"></i></div><div><div class="profile-stat-num">'+memberSinceStr+'</div><div class="profile-stat-label">Member since</div></div></div>' +
+        '<div class="profile-stat"><div class="profile-stat-icon"><i class="fas fa-clock-rotate-left"></i></div><div><div class="profile-stat-num" style="font-size:1rem;">'+lastOrder+'</div><div class="profile-stat-label">Last order</div></div></div>' +
+      '</div>' +
+      '<div class="quick-actions">' +
+        '<a class="quick-action" href="../../men/"><div class="quick-action-icon"><i class="fas fa-bag-shopping"></i></div><strong>Continue shopping</strong><span>Browse new arrivals</span></a>' +
+        '<a class="quick-action" href="../../cart/"><div class="quick-action-icon"><i class="fas fa-cart-shopping"></i></div><strong>View cart</strong><span>Check items in bag</span></a>' +
+        '<a class="quick-action" href="mailto:support@zenstore.example"><div class="quick-action-icon"><i class="fas fa-headset"></i></div><strong>Need help?</strong><span>Contact support</span></a>' +
       '</div>' +
       '<div class="section-block">' +
         '<div class="section-block-head"><span class="num"><i class="fas fa-clock-rotate-left"></i></span><h3>Order history</h3></div>' +

@@ -35,19 +35,19 @@ if (!p) {
       '<div class="pd-main-img"><img id="pd-main" src="'+ZEN.url(p.image)+'" alt="'+p.name+'"></div>' +
       '<div class="pd-thumbs">' +
         [1,2,3,4].map(i => {
-          const img = p.image.replace(/\d+\.png$/, String(i).padStart(2,\'0\')+\'.png\');
-          return '<button class="pd-thumb '+(i===1?\'active\':\'\')+'" data-img="'+ZEN.url(img)+'"><img src="'+ZEN.url(img)+'" alt="thumb '+i+'"></button>';
+          const img = p.image.replace(/\d+\.png$/, String(i).padStart(2,'0')+'.png');
+          return '<button class="pd-thumb '+(i===1?'active':'')+'" data-img="'+ZEN.url(img)+'"><img src="'+ZEN.url(img)+'" alt="thumb '+i+'"></button>';
         }).join('') +
       '</div>' +
     '</div>' +
     '<div class="pd-info">' +
-      '<span class="pd-cat">'+ZEN.cap(p.category)+' · '+ZEN.cap(p.subcategory.replace(/-/g,\' \'))+'</span>' +
+      '<span class="pd-cat">'+ZEN.cap(p.category)+' · '+ZEN.cap(p.subcategory.replace(/-/g,' '))+'</span>' +
       '<h1>'+p.name+'</h1>' +
       '<div class="pd-rating">'+'★'.repeat(5)+' <span style="color:var(--c-text-muted);margin-left:6px;">'+p.rating+' (124 reviews)</span></div>' +
       '<div class="pd-price">'+ZEN.fmt(p.price)+old+'</div>' +
       '<p class="pd-desc">'+p.description+'</p>' +
       '<div class="pd-section"><h4>Select size (EU)</h4><div class="size-grid" id="size-grid">'+
-        sizes.map((s,i) => '<button data-size="'+s+'"'+(i===2?\' class="active"\':\'\')+'>'+s+'</button>').join('') +
+        sizes.map((s,i) => '<button data-size="'+s+'"'+(i===2?' class="active"':'')+'>'+s+'</button>').join('') +
       '</div></div>' +
       '<div class="pd-actions">' +
         '<button class="btn btn-primary btn-lg" id="add-to-cart"><i class="fas fa-shopping-bag"></i> Add to cart</button>' +

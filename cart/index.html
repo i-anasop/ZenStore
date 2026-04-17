@@ -43,17 +43,17 @@ function render() {
           const sizeLabel = i.size ? ' · Size ' + i.size : '';
           return '<div class="cart-item"><div class="cart-item-img"><img src="'+ZEN.url(i.product.image)+'" alt=""></div>' +
             '<div class="cart-item-info"><h4>'+i.product.name+'</h4>' +
-            '<div class="cart-item-meta">'+ZEN.cap(i.product.category)+' · '+ZEN.cap(i.product.subcategory.replace(/-/g,\' \'))+sizeLabel+'</div>' +
+            '<div class="cart-item-meta">'+ZEN.cap(i.product.category)+' · '+ZEN.cap(i.product.subcategory.replace(/-/g,' '))+sizeLabel+'</div>' +
             '<div class="cart-item-price" style="margin-top:6px;">'+ZEN.fmt(i.product.price)+'</div></div>' +
             '<div class="cart-item-actions">' +
-              '<div class="qty-stepper"><button data-act="dec" data-id="'+i.id+'" data-size="'+(i.size||\'\')+'">−</button><span>'+i.qty+'</span><button data-act="inc" data-id="'+i.id+'" data-size="'+(i.size||\'\')+'">+</button></div>' +
-              '<button class="cart-item-remove" data-act="rm" data-id="'+i.id+'" data-size="'+(i.size||\'\')+'"><i class="fas fa-trash"></i> Remove</button>' +
+              '<div class="qty-stepper"><button data-act="dec" data-id="'+i.id+'" data-size="'+(i.size||'')+'">−</button><span>'+i.qty+'</span><button data-act="inc" data-id="'+i.id+'" data-size="'+(i.size||'')+'">+</button></div>' +
+              '<button class="cart-item-remove" data-act="rm" data-id="'+i.id+'" data-size="'+(i.size||'')+'"><i class="fas fa-trash"></i> Remove</button>' +
             '</div></div>';
         }).join('') +
       '</div>' +
       '<aside class="cart-summary"><h3>Order summary</h3>' +
         '<div class="summary-row"><span>Subtotal</span><span>'+ZEN.fmt(t.subtotal)+'</span></div>' +
-        '<div class="summary-row"><span>Shipping</span><span>'+(t.shipping?ZEN.fmt(t.shipping):\'Free\')+'</span></div>' +
+        '<div class="summary-row"><span>Shipping</span><span>'+(t.shipping?ZEN.fmt(t.shipping):'Free')+'</span></div>' +
         '<div class="summary-row"><span>Tax (5%)</span><span>'+ZEN.fmt(t.tax)+'</span></div>' +
         '<div class="summary-row total"><span>Total</span><span>'+ZEN.fmt(t.total)+'</span></div>' +
         '<a class="btn btn-primary btn-block" style="margin-top:16px;" href="../account/checkout/">Proceed to checkout <i class="fas fa-arrow-right"></i></a>' +

@@ -6,13 +6,13 @@
 
 Browse curated collections, manage a cart, sign in, and check out — all wrapped in a clean, minimalist UI with an embedded AI assistant.
 
-[![Live Demo](https://img.shields.io/badge/Live_Demo-2ea44f?style=for-the-badge&logo=github&logoColor=white)](https://i-anasop.github.io/Zen-Store/)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-2ea44f?style=for-the-badge&logo=github&logoColor=white)](https://i-anasop.github.io/ZenStore/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
 [![Made with HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/docs/Web/HTML)
 [![Made with CSS](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/docs/Web/CSS)
 [![Made with JS](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/docs/Web/JavaScript)
 
-[Live Demo](https://i-anasop.github.io/Zen-Store/) · [Report Bug](https://github.com/i-anasop/Zen-Store/issues) · [Request Feature](https://github.com/i-anasop/Zen-Store/issues)
+[Live App](https://i-anasop.github.io/ZenStore/) · [Report Bug](https://github.com/i-anasop/ZenStore/issues) · [Request Feature](https://github.com/i-anasop/ZenStore/issues)
 
 </div>
 

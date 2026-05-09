@@ -12,6 +12,8 @@
     <img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI">
     <img src="https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
     <img src="https://img.shields.io/badge/NLP_Engine-Transformer-FF69B4?style=for-the-badge" alt="NLP Engine">
+    <a href="https://i-anasop.github.io/ZenStore/"><img src="https://img.shields.io/badge/Live_Demo-Zen_Store-brightgreen?style=for-the-badge&logo=github" alt="Live Demo"></a>
+    <a href="https://render.com/deploy?repo=https://github.com/i-anasop/ZenStore"><img src="https://render.com/images/deploy-to-render-button.svg" alt="Deploy to Render"></a>
     <img src="https://img.shields.io/badge/GitHub_Pages-Deployed-222222?style=for-the-badge&logo=githubactions&logoColor=white" alt="GitHub Pages">
     <img src="https://img.shields.io/badge/License-MIT-white?style=for-the-badge" alt="License">
   </p>

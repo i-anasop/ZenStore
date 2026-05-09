@@ -1,79 +1,82 @@
-# 👟 Zen Store | AI-Powered eCommerce Experience
+# Zen Store: AI-Integrated eCommerce Platform
 
-![Zen Store Header](https://raw.githubusercontent.com/i-anasop/ZenStore/main/assets/images/logo.jpg)
+## Overview
+Zen Store is a comprehensive eCommerce solution designed for high-performance footwear retail. The platform integrates a sophisticated AI-driven customer support service with a modular frontend architecture, providing a seamless transition between automated assistance and human agent escalation.
 
-Zen Store is a premium, professional eCommerce platform integrated with a state-of-the-art **AI Customer Support Service**. Built with a focus on high-end glassmorphism UI/UX and intelligent interaction.
+## System Architecture
 
-[![Live Demo](https://img.shields.io/badge/Live_Demo-Zen_Store-brightgreen?style=for-the-badge&logo=github)](https://i-anasop.github.io/ZenStore/)
-[![FastAPI](https://img.shields.io/badge/Backend-FastAPI-009688?style=for-the-badge&logo=fastapi)](https://fastapi.tiangolo.com/)
-[![AI-Powered](https://img.shields.io/badge/AI-SentenceTransformers-ff69b4?style=for-the-badge&logo=huggingface)](https://huggingface.co/)
+### 1. Intelligence Layer (Core Service)
+The support subsystem utilizes the `all-MiniLM-L6-v2` Sentence-Transformer model for semantic intent classification.
+*   **Knowledge Base**: Synchronized with a 78-item product catalog for accurate SKU-level inquiries.
+*   **Sentiment Analysis**: Monitors user interaction patterns to facilitate automated escalation to human agents.
+*   **Polling Protocol**: Implements a real-time API polling mechanism for live chat synchronization.
 
----
+### 2. Frontend Infrastructure
+Developed using vanilla web technologies (HTML5, CSS3, JavaScript ES6) to ensure maximum compatibility and performance.
+*   **UI/UX**: Implements a modern design system with responsive layouts and dynamic UI state management.
+*   **Modular Components**: Encapsulated logic for authentication, cart management, and real-time chat widgets.
 
-## ✨ Key Features
-
-### 🤖 Intelligent AI Support
-*   **Semantic Understanding**: Powered by `all-MiniLM-L6-v2` for high-accuracy intent matching.
-*   **Product Aware**: The bot knows every one of the **78 products** in the catalog, including pricing and category details.
-*   **Frustration Detection**: Automatically detects user frustration and offers a **Live Human Handover**.
-*   **Real-time Polling**: Supports a polling-based API for seamless communication with a human agent.
-
-### 🎨 Premium UI/UX
-*   **Glassmorphism Design**: High-end frosted glass effects and floating orb animations.
-*   **Responsive Layout**: Fully optimized for Desktop, Tablet, and Mobile.
-*   **Dynamic States**: The chat widget updates visually based on status (AI, Waiting, or Live with Agent).
-
-### 🏗️ Enterprise Architecture
-*   **Modular JS**: Organized into `base`, `auth`, `cart`, and `ai-chat` modules.
-*   **FastAPI Backend**: Asynchronous Python backend for lightning-fast AI responses.
-*   **Persistent Sessions**: SQLite-backed session tracking for interaction logs and chat history.
+### 3. Backend API
+A FastAPI-based Python service orchestrates the AI logic and data persistence.
+*   **Persistence**: SQLite-backed session management for interaction logging and state retention.
+*   **Security**: Implementation of auth-ready logic for user and administrative access.
 
 ---
 
-## 📂 Project Structure
+## Directory Structure
 
 ```text
-/ (Root)
-├── index.html          # Professional Homepage
-├── assets/             # Global CSS, Images, and JS Modules
-├── pages/              # Organized Shop Sections (Men, Women, Account, etc.)
-├── core/               # THE BRAIN (Internal Project Files)
-│   ├── server/         # FastAPI Backend & AI NLP Service
-│   ├── scripts/        # Maintainence & Sync Tools
-│   └── docs/           # Project Knowledge Base & Specs
-├── README.md           # This Document
-└── LICENSE             # MIT License
+/
+├── index.html          | Primary entry point for the web application
+├── assets/             | Compiled resources (CSS, JS, Static Assets)
+├── pages/              | Application routing and view modules
+│   ├── account/        | User authentication and profile management
+│   ├── admin/          | Administrative dashboard and order verification
+│   └── errors/         | Standardized error handling views
+└── core/               | Internal system components
+    ├── server/         | Python FastAPI source and NLP models
+    ├── scripts/        | Maintenance and data synchronization utilities
+    └── docs/           | System specifications and knowledge datasets
 ```
 
 ---
 
-## 🚀 Getting Started
+## Deployment and Installation
 
-### 1. The Website (Frontend)
-The frontend is 100% static and ready to go.
+### Prerequisites
+*   Python 3.8 or higher
+*   Modern web browser (Chromium-based recommended)
+
+### Backend Configuration
+1. Navigate to the server directory:
+   ```bash
+   cd core/server
+   ```
+2. Install dependencies:
+   ```bash
+   pip install fastapi uvicorn sentence-transformers torch
+   ```
+3. Execute the service:
+   ```bash
+   python main.py
+   ```
+
+### Frontend Execution
+The application is served as a static distribution. For local development, utilize a standard HTTP server:
 ```bash
-# Serve locally
 python -m http.server 3000
 ```
-Visit `http://localhost:3000` to view the store.
-
-### 2. The AI Service (Backend)
-Navigate to the `core/server` folder to launch the AI brain.
-```bash
-cd core/server
-pip install -r requirements.txt # if available
-python main.py
-```
-The backend runs at `localhost:8000`.
 
 ---
 
-## 🛡️ License
-Distributed under the MIT License. See `LICENSE` for more information.
+## Technical Specifications
+*   **NLP Model**: Sentence-Transformers (all-MiniLM-L6-v2)
+*   **API Framework**: FastAPI v0.100+
+*   **Database**: SQLite 3.0
+*   **Frontend**: Vanilla JavaScript (ES6+), CSS3 (Custom Design System)
 
----
+## Authorship
+Muhammed Anas - [GitHub Profile](https://github.com/i-anasop)
 
-## 👨‍💻 Author
-**Muhammed Anas** - [GitHub](https://github.com/i-anasop)
-
-*Zen Store — Stepping into the future of eCommerce.*
+## License
+Licensed under the MIT License. Refer to the LICENSE file for full legal text.

@@ -16,18 +16,30 @@
   ];
 
   const getAIResponse = (query) => {
-    const input = query.toLowerCase();
+    const input = query.toLowerCase().trim();
     
-    // 1. FAQ Matching
+    // 1. Greeting Handler
+    const greetings = ['hi', 'hello', 'hey', 'asalam', 'yo'];
+    if (greetings.some(g => input === g || input.startsWith(g + ' '))) {
+      return "Hello! I'm your Zen Store AI assistant. I can help you with product details, return policies, or shipping info. What's on your mind?";
+    }
+
+    // 2. FAQ Matching (Flexible)
     for (const item of FAQ_DATA) {
       if (input.includes(item.q)) return item.a;
     }
 
-    // 2. Product Awareness (Uses the global ZEN_PRODUCTS if available)
+    // 3. Product Awareness (Uses the global ZEN_PRODUCTS if available)
     const products = window.ZEN_PRODUCTS || [];
-    const foundProduct = products.find(p => input.includes(p.name.toLowerCase()));
+    // Search for any word in the query that matches a product name
+    const words = input.split(/\s+/);
+    const foundProduct = products.find(p => 
+      input.includes(p.name.toLowerCase()) || 
+      words.some(w => p.name.toLowerCase().includes(w) && w.length > 3)
+    );
+
     if (foundProduct) {
-      return `The ${foundProduct.name} is a great choice! It's available for ${foundProduct.price} PKR. You can find it in our ${foundProduct.category} section.`;
+      return `The ${foundProduct.name} is a great choice! It's currently ${foundProduct.price} PKR. You can find it in our ${foundProduct.category} section. Would you like the link?`;
     }
 
     // 3. Assignment 3 Escalation Logic

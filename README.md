@@ -72,9 +72,9 @@ Zen Store is an industrial-grade eCommerce solution engineered for high-availabi
 
 ---
 
-## AI Chatbot Implementation (Assignment 3 Specification)
+## AI Chatbot Implementation
 
-This project fulfills the requirements for Assignment 3: AI-Powered Customer Support Service.
+AI-Powered Customer Support Service.
 
 ### 1. Functional Requirements
 *   **FAQ Resolution**: The system utilizes semantic similarity to resolve customer queries against a pre-defined FAQ dataset.

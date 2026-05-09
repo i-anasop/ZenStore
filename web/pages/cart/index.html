@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart · Zen Store</title>
+  <link rel="icon" type="image/svg+xml" href="../../assets/images/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"></noscript>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
+  <link rel="stylesheet" href="../../assets/css/main.css">
+</head>
+<body>
+<main>
+
+  <section class="page-head">
+    <div class="container">
+      <div class="crumbs"><a href="../">Home</a> · Cart</div>
+      <h1>Your cart</h1>
+    </div>
+  </section>
+  <section class="container section-tight" id="cart-root"></section>
+</main>
+<script src="../../assets/js/data.js"></script>
+<script src="../../assets/js/cart.js"></script>
+<script src="../../assets/js/auth.js"></script>
+<script src="../../assets/js/orders.js"></script>
+<script src="../../assets/js/base.js"></script>
+<script>ZEN.initLayout('');</script>
+<script>
+function render() {
+  const root = document.getElementById('cart-root');
+  const t = ZEN.cartTotals();
+  if (!t.items.length) {
+    root.innerHTML = '<div class="empty-state"><div class="empty-state-icon"><i class="fas fa-shopping-bag"></i></div><h3>Your cart is empty</h3><a class="btn btn-primary" href="../men/">Browse products</a></div>';
+    return;
+  }
+  root.innerHTML =
+    '<div class="cart-layout">' +
+      '<div class="cart-list">' +
+        t.items.map(i => {
+          const sizeLabel = i.size ? ' · Size ' + i.size : '';
+          return '<div class="cart-item"><div class="cart-item-img"><img src="'+ZEN.url(i.product.image)+'" alt=""></div>' +
+            '<div class="cart-item-info"><h4>'+i.product.name+'</h4>' +
+            '<div class="cart-item-meta">'+ZEN.cap(i.product.category)+' · '+ZEN.cap(i.product.subcategory.replace(/-/g,' '))+sizeLabel+'</div>' +
+            '<div class="cart-item-price" style="margin-top:6px;">'+ZEN.fmt(i.product.price)+'</div></div>' +
+            '<div class="cart-item-actions">' +
+              '<div class="qty-stepper"><button data-act="dec" data-id="'+i.id+'" data-size="'+(i.size||'')+'">−</button><span>'+i.qty+'</span><button data-act="inc" data-id="'+i.id+'" data-size="'+(i.size||'')+'">+</button></div>' +
+              '<button class="cart-item-remove" data-act="rm" data-id="'+i.id+'" data-size="'+(i.size||'')+'"><i class="fas fa-trash"></i> Remove</button>' +
+            '</div></div>';
+        }).join('') +
+      '</div>' +
+      '<aside class="cart-summary"><h3>Order summary</h3>' +
+        '<div class="summary-row"><span>Subtotal</span><span>'+ZEN.fmt(t.subtotal)+'</span></div>' +
+        '<div class="summary-row"><span>Shipping</span><span>'+(t.shipping?ZEN.fmt(t.shipping):'Free')+'</span></div>' +
+        '<div class="summary-row"><span>Tax (5%)</span><span>'+ZEN.fmt(t.tax)+'</span></div>' +
+        '<div class="summary-row total"><span>Total</span><span>'+ZEN.fmt(t.total)+'</span></div>' +
+        '<a class="btn btn-primary btn-block" style="margin-top:16px;" href="../account/checkout/">Proceed to checkout <i class="fas fa-arrow-right"></i></a>' +
+        '<a class="btn btn-ghost btn-block" style="margin-top:8px;" href="../men/">Continue shopping</a>' +
+      '</aside>' +
+    '</div>';
+  root.querySelectorAll('[data-act]').forEach(b => b.addEventListener('click', () => {
+    const id = b.dataset.id; const size = b.dataset.size ? +b.dataset.size : null;
+    const cur = ZEN.getCart().find(x => x.id === id && x.size === size);
+    if (b.dataset.act === 'inc') ZEN.cartUpdateQty(id, (cur?cur.qty:0)+1, size);
+    else if (b.dataset.act === 'dec') ZEN.cartUpdateQty(id, (cur?cur.qty:0)-1, size);
+    else if (b.dataset.act === 'rm') ZEN.cartRemove(id, size);
+    render();
+  }));
+}
+render();
+</script>
+</body>
+</html>

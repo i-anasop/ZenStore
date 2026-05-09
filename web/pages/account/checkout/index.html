@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout · Zen Store</title>
+  <link rel="icon" type="image/svg+xml" href="../../assets/images/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"></noscript>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
+  <link rel="stylesheet" href="../../assets/css/main.css">
+</head>
+<body>
+<main>
+  <section class="page-head">
+    <div class="container">
+      <div class="crumbs"><a href="../../">Home</a> · <a href="../../cart/">Cart</a> · Checkout</div>
+      <h1>Checkout</h1>
+    </div>
+  </section>
+  <section class="container">
+    <div class="checkout-layout" id="checkout-root"></div>
+  </section>
+
+  <!-- EasyPaisa payment modal -->
+  <div class="ep-overlay" id="ep-overlay" role="dialog" aria-modal="true" aria-labelledby="ep-title">
+    <div class="ep-modal">
+      <div class="ep-head">
+        <div class="ep-head-title">
+          <div class="ep-head-logo">ep</div>
+          <div>
+            <h3 id="ep-title">EasyPaisa Payment</h3>
+            <small>Send the amount to confirm your order</small>
+          </div>
+        </div>
+        <button class="ep-close" id="ep-close" aria-label="Close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="ep-body">
+        <div class="ep-amount">
+          <div class="ep-amount-label">Amount to send</div>
+          <div class="ep-amount-value" id="ep-amount">—</div>
+        </div>
+
+        <div class="ep-qr-wrap">
+          <img id="ep-qr" alt="EasyPaisa QR code" loading="lazy">
+          <div class="ep-qr-caption">Scan with EasyPaisa app · Or use the merchant details below</div>
+        </div>
+
+        <div class="ep-merchant">
+          <div class="ep-merchant-row">
+            <span class="lbl">Account title</span>
+            <span class="val">Zen Store</span>
+          </div>
+          <div class="ep-merchant-row">
+            <span class="lbl">EasyPaisa number</span>
+            <span class="val"><span id="ep-number">0300-1234567</span><button class="ep-copy" data-copy="03001234567" aria-label="Copy number"><i class="fas fa-copy"></i></button></span>
+          </div>
+          <div class="ep-merchant-row">
+            <span class="lbl">Reference</span>
+            <span class="val"><span id="ep-ref">—</span><button class="ep-copy" id="ep-copy-ref" aria-label="Copy reference"><i class="fas fa-copy"></i></button></span>
+          </div>
+        </div>
+
+        <ol class="ep-steps">
+          <li>Open EasyPaisa app and tap <b>Send Money</b>.</li>
+          <li>Send the exact amount to the number above.</li>
+          <li>Use the reference as the message so we can match it to your order.</li>
+          <li>Enter your transaction ID below and tap confirm.</li>
+        </ol>
+
+        <div class="ep-tx-field">
+          <label for="ep-tx">Transaction ID (TID)</label>
+          <input type="text" id="ep-tx" placeholder="e.g. EP12345678" autocomplete="off" inputmode="text">
+          <span class="hint">You'll find this in the SMS receipt or in your EasyPaisa app history.</span>
+        </div>
+
+        <div class="ep-actions">
+          <button class="btn btn-secondary" type="button" id="ep-cancel">Cancel</button>
+          <button class="btn btn-primary" type="button" id="ep-confirm"><i class="fas fa-check"></i> I've sent the payment</button>
+        </div>
+
+        <div class="ep-note">
+          <b>What happens next?</b> Once you confirm, we'll review the payment within a few hours. Your order moves to <b>processing</b> after our team verifies it. You can track the status in <i>My account → Order history</i>.
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<script src="../../assets/js/data.js"></script>
+<script src="../../assets/js/cart.js"></script>
+<script src="../../assets/js/auth.js"></script>
+<script src="../../assets/js/orders.js"></script>
+<script src="../../assets/js/base.js"></script>
+<script>ZEN.initLayout('');</script>
+<script>
+(function(){
+  const t = ZEN.cartTotals();
+  const root = document.getElementById('checkout-root');
+  if (!t.items.length) {
+    root.innerHTML = '<div class="empty-state" style="grid-column:1/-1"><div class="empty-state-icon"><i class="fas fa-shopping-bag"></i></div><h3>Your cart is empty</h3><p>Add items to your cart before checking out.</p><a class="btn btn-primary" href="../../men/">Browse products</a></div>';
+    return;
+  }
+  const user = ZEN.getUser();
+  root.innerHTML =
+    '<div>' +
+      '<form id="checkout-form" novalidate>' +
+        '<div class="section-block">' +
+          '<div class="section-block-head"><span class="num">1</span><h3>Delivery details</h3></div>' +
+          '<div class="field"><label for="ck-name">Full name</label><input type="text" id="ck-name" required value="'+(user?user.name:'')+'" placeholder="Your full name"><span class="err" id="ck-name-err"></span></div>' +
+          '<div class="form-row">' +
+            '<div class="field"><label for="ck-email">Email</label><input type="email" id="ck-email" required value="'+(user?user.email:'')+'" placeholder="you@example.com"><span class="err" id="ck-email-err"></span></div>' +
+            '<div class="field"><label for="ck-phone">Phone</label><input type="tel" id="ck-phone" required placeholder="03XX XXXXXXX"><span class="field-hint">11-digit Pakistani number (e.g. 03001234567)</span><span class="err" id="ck-phone-err"></span></div>' +
+          '</div>' +
+          '<div class="field"><label for="ck-addr">Street address</label><input type="text" id="ck-addr" required placeholder="House #, street, area"><span class="err" id="ck-addr-err"></span></div>' +
+          '<div class="form-row">' +
+            '<div class="field"><label for="ck-city">City</label><input type="text" id="ck-city" required placeholder="e.g. Karachi"><span class="err" id="ck-city-err"></span></div>' +
+            '<div class="field"><label for="ck-zip">Postal code</label><input type="text" id="ck-zip" required inputmode="numeric" maxlength="5" placeholder="5 digits"><span class="err" id="ck-zip-err"></span></div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="section-block">' +
+          '<div class="section-block-head"><span class="num">2</span><h3>Payment method</h3></div>' +
+          '<div class="pay-options">' +
+            '<label class="pay-opt active" id="pay-easypaisa"><input type="radio" name="pay" value="EasyPaisa" checked hidden><div class="pay-opt-icon"><i class="fas fa-mobile-screen"></i></div><div><strong>EasyPaisa</strong><span>Mobile wallet</span></div></label>' +
+            '<label class="pay-opt" id="pay-cod"><input type="radio" name="pay" value="Cash on Delivery" hidden><div class="pay-opt-icon"><i class="fas fa-money-bill-wave"></i></div><div><strong>Cash on Delivery</strong><span>Pay when you receive</span></div></label>' +
+          '</div>' +
+        '</div>' +
+        '<div class="section-block">' +
+          '<div class="section-block-head"><span class="num">3</span><h3>Review &amp; place order</h3></div>' +
+          '<p class="text-muted" style="margin-bottom:16px;font-size:.9rem;">By placing your order, you agree to our terms and confirm the details above are correct.</p>' +
+          '<button type="submit" class="btn btn-primary btn-block btn-lg" id="place-order-btn"><i class="fas fa-lock"></i> Place order · '+ZEN.fmt(t.total)+'</button>' +
+        '</div>' +
+      '</form>' +
+    '</div>' +
+    '<aside class="cart-summary" style="position:sticky;top:90px;">' +
+      '<h3>Your order</h3>' +
+      t.items.map(i => '<div class="summary-row"><span>'+i.product.name+(i.size?' ('+i.size+')':'')+' × '+i.qty+'</span><span>'+ZEN.fmt(i.product.price*i.qty)+'</span></div>').join('') +
+      '<div class="summary-row" style="border-top:1px solid var(--c-border);margin-top:12px;padding-top:12px;"><span>Subtotal</span><span>'+ZEN.fmt(t.subtotal)+'</span></div>' +
+      '<div class="summary-row"><span>Shipping</span><span>'+(t.shipping?ZEN.fmt(t.shipping):'Free')+'</span></div>' +
+      '<div class="summary-row"><span>Tax (5%)</span><span>'+ZEN.fmt(t.tax)+'</span></div>' +
+      '<div class="summary-row total"><span>Total</span><span>'+ZEN.fmt(t.total)+'</span></div>' +
+      '<div style="margin-top:16px;padding-top:16px;border-top:1px dashed var(--c-border);font-size:.8rem;color:var(--c-text-muted);">' +
+        '<div style="margin-bottom:6px;"><i class="fas fa-shield-halved" style="color:var(--c-primary);"></i> Secure checkout — your data is encrypted</div>' +
+        '<div><i class="fas fa-truck-fast" style="color:var(--c-primary);"></i> Delivery in 3–5 business days</div>' +
+      '</div>' +
+    '</aside>';
+
+  // Payment radios
+  document.querySelectorAll('.pay-opt').forEach(o => o.addEventListener('click', () => {
+    document.querySelectorAll('.pay-opt').forEach(x => x.classList.remove('active'));
+    o.classList.add('active');
+    o.querySelector('input').checked = true;
+  }));
+
+  // Validation
+  const $ = id => document.getElementById(id);
+  const phoneRe = /^03\d{9}$/;
+  const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const zipRe = /^\d{5}$/;
+  const cityRe = /^[A-Za-z\u00C0-\u017F\s.'-]{2,}$/;
+
+  const validators = {
+    'ck-name': v => v.trim().length >= 2 ? '' : 'Please enter your full name (min 2 characters)',
+    'ck-email': v => emailRe.test(v.trim()) ? '' : 'Enter a valid email address',
+    'ck-phone': v => phoneRe.test(v.replace(/\s|-/g, '')) ? '' : 'Enter an 11-digit number starting with 03 (e.g. 03001234567)',
+    'ck-addr': v => v.trim().length >= 8 ? '' : 'Address must be at least 8 characters',
+    'ck-city': v => cityRe.test(v.trim()) ? '' : 'Enter a valid city name',
+    'ck-zip': v => zipRe.test(v.trim()) ? '' : 'Postal code must be exactly 5 digits',
+  };
+
+  function setErr(id, msg) {
+    $(id+'-err').textContent = msg || '';
+    $(id).classList.toggle('invalid', !!msg);
+    $(id).classList.toggle('valid', !msg && $(id).value.trim().length > 0);
+  }
+
+  Object.keys(validators).forEach(id => {
+    const el = $(id);
+    el.addEventListener('blur', () => setErr(id, validators[id](el.value)));
+    el.addEventListener('input', () => { if (el.classList.contains('invalid')) setErr(id, validators[id](el.value)); });
+  });
+  // Numeric-only for zip & phone
+  ['ck-zip','ck-phone'].forEach(id => {
+    $(id).addEventListener('input', () => { $(id).value = $(id).value.replace(/[^\d]/g, ''); });
+  });
+
+  // -------- EasyPaisa modal helpers --------
+  const EP_NUMBER = '03001234567';
+  const overlay = $('ep-overlay');
+  const openEp = (amount, ref) => {
+    $('ep-amount').textContent = ZEN.fmt(amount);
+    $('ep-ref').textContent = ref;
+    const qrData = encodeURIComponent('EasyPaisa Send Money\nTo: ' + EP_NUMBER + '\nAmount: Rs ' + amount + '\nRef: ' + ref);
+    $('ep-qr').src = 'https://api.qrserver.com/v1/create-qr-code/?size=240x240&margin=8&data=' + qrData;
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => $('ep-tx').focus(), 200);
+  };
+  const closeEp = () => { overlay.classList.remove('open'); document.body.style.overflow = ''; };
+  $('ep-close').addEventListener('click', closeEp);
+  $('ep-cancel').addEventListener('click', closeEp);
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) closeEp(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && overlay.classList.contains('open')) closeEp(); });
+  // Copy buttons
+  document.querySelectorAll('.ep-copy').forEach(b => b.addEventListener('click', () => {
+    const txt = b.dataset.copy || $('ep-ref').textContent;
+    navigator.clipboard?.writeText(txt).then(() => ZEN.toast('Copied: ' + txt, 'success')).catch(() => {});
+  }));
+
+  function placeOrder(method, paymentExtra) {
+    const totals = ZEN.cartTotals();
+    const userObj = ZEN.getUser() || { name: $('ck-name').value.trim(), email: $('ck-email').value.trim() };
+    ZEN.createOrder({
+      user: { ...userObj, name: $('ck-name').value.trim(), email: $('ck-email').value.trim() },
+      address: { name: $('ck-name').value.trim(), phone: $('ck-phone').value.trim(), addr: $('ck-addr').value.trim(), city: $('ck-city').value.trim(), zip: $('ck-zip').value.trim() },
+      payment: { method, ...paymentExtra },
+      items: totals.items,
+      totals: { subtotal: totals.subtotal, shipping: totals.shipping, tax: totals.tax, total: totals.total },
+    });
+    ZEN.cartClear();
+    location.href = ZEN.url('account/thankyou/');
+  }
+
+  $('ep-confirm').addEventListener('click', () => {
+    const tx = $('ep-tx').value.trim();
+    if (tx.length < 4) {
+      ZEN.toast('Please enter your transaction ID first.', 'error');
+      $('ep-tx').focus();
+      return;
+    }
+    placeOrder('EasyPaisa', { txId: tx, sentTo: EP_NUMBER, reference: $('ep-ref').textContent });
+  });
+
+  $('checkout-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    let firstInvalid = null;
+    Object.keys(validators).forEach(id => {
+      const msg = validators[id]($(id).value);
+      setErr(id, msg);
+      if (msg && !firstInvalid) firstInvalid = id;
+    });
+    if (firstInvalid) {
+      ZEN.toast('Please fix the highlighted fields.', 'error');
+      const el = $(firstInvalid);
+      el.focus();
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+    const method = document.querySelector('input[name="pay"]:checked').value;
+    if (method === 'EasyPaisa') {
+      const totals = ZEN.cartTotals();
+      const ref = 'ZEN-' + Math.random().toString(36).toUpperCase().slice(2, 8);
+      openEp(totals.total, ref);
+      return;
+    }
+    placeOrder(method, {});
+  });
+})();
+</script>
+</body>
+</html>

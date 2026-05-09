@@ -1,0 +1,548 @@
+[
+  {
+    "id": "m-snk-1",
+    "name": "Aero Stride",
+    "category": "men",
+    "subcategory": "sneakers",
+    "price": 24900
+  },
+  {
+    "id": "m-snk-2",
+    "name": "Velocity Mesh",
+    "category": "men",
+    "subcategory": "sneakers",
+    "price": 26600
+  },
+  {
+    "id": "m-snk-3",
+    "name": "Urban Court",
+    "category": "men",
+    "subcategory": "sneakers",
+    "price": 22100
+  },
+  {
+    "id": "m-snk-4",
+    "name": "Cloudwalk Pro",
+    "category": "men",
+    "subcategory": "sneakers",
+    "price": 30500
+  },
+  {
+    "id": "m-snk-5",
+    "name": "Metro Runner",
+    "category": "men",
+    "subcategory": "sneakers",
+    "price": 23800
+  },
+  {
+    "id": "m-snk-6",
+    "name": "Skyline Lite",
+    "category": "men",
+    "subcategory": "sneakers",
+    "price": 27700
+  },
+  {
+    "id": "m-bts-1",
+    "name": "Trailhead Boot",
+    "category": "men",
+    "subcategory": "boots",
+    "price": 38900
+  },
+  {
+    "id": "m-bts-2",
+    "name": "Highland Chukka",
+    "category": "men",
+    "subcategory": "boots",
+    "price": 33300
+  },
+  {
+    "id": "m-bts-3",
+    "name": "Ridgeline Mid",
+    "category": "men",
+    "subcategory": "boots",
+    "price": 41700
+  },
+  {
+    "id": "m-bts-4",
+    "name": "Cascade Hiker",
+    "category": "men",
+    "subcategory": "boots",
+    "price": 44500
+  },
+  {
+    "id": "m-bts-5",
+    "name": "Frontier Lace",
+    "category": "men",
+    "subcategory": "boots",
+    "price": 36100
+  },
+  {
+    "id": "m-bts-6",
+    "name": "Summit Pro",
+    "category": "men",
+    "subcategory": "boots",
+    "price": 47300
+  },
+  {
+    "id": "m-frm-1",
+    "name": "Oxford Classic",
+    "category": "men",
+    "subcategory": "formal-shoes",
+    "price": 33300
+  },
+  {
+    "id": "m-frm-2",
+    "name": "Mayfair Loafer",
+    "category": "men",
+    "subcategory": "formal-shoes",
+    "price": 27700
+  },
+  {
+    "id": "m-frm-3",
+    "name": "Belmont Derby",
+    "category": "men",
+    "subcategory": "formal-shoes",
+    "price": 36100
+  },
+  {
+    "id": "m-frm-4",
+    "name": "Wellington Brogue",
+    "category": "men",
+    "subcategory": "formal-shoes",
+    "price": 38900
+  },
+  {
+    "id": "m-frm-5",
+    "name": "Heritage Monk",
+    "category": "men",
+    "subcategory": "formal-shoes",
+    "price": 41700
+  },
+  {
+    "id": "m-frm-6",
+    "name": "Kensington Lace",
+    "category": "men",
+    "subcategory": "formal-shoes",
+    "price": 30500
+  },
+  {
+    "id": "m-jog-1",
+    "name": "Glide Runner",
+    "category": "men",
+    "subcategory": "joggers",
+    "price": 21000
+  },
+  {
+    "id": "m-jog-2",
+    "name": "Pace Knit",
+    "category": "men",
+    "subcategory": "joggers",
+    "price": 22100
+  },
+  {
+    "id": "m-jog-3",
+    "name": "Drift Trainer",
+    "category": "men",
+    "subcategory": "joggers",
+    "price": 23800
+  },
+  {
+    "id": "m-jog-4",
+    "name": "Tempo Court",
+    "category": "men",
+    "subcategory": "joggers",
+    "price": 19300
+  },
+  {
+    "id": "m-jog-5",
+    "name": "Stride Mesh",
+    "category": "men",
+    "subcategory": "joggers",
+    "price": 23000
+  },
+  {
+    "id": "m-jog-6",
+    "name": "Coast Lite",
+    "category": "men",
+    "subcategory": "joggers",
+    "price": 24900
+  },
+  {
+    "id": "m-lfr-1",
+    "name": "Capri Loafer",
+    "category": "men",
+    "subcategory": "loofers",
+    "price": 26600
+  },
+  {
+    "id": "m-lfr-2",
+    "name": "Tuscan Suede",
+    "category": "men",
+    "subcategory": "loofers",
+    "price": 30500
+  },
+  {
+    "id": "m-lfr-3",
+    "name": "Riviera Slip",
+    "category": "men",
+    "subcategory": "loofers",
+    "price": 24900
+  },
+  {
+    "id": "m-lfr-4",
+    "name": "Coastal Penny",
+    "category": "men",
+    "subcategory": "loofers",
+    "price": 27700
+  },
+  {
+    "id": "m-lfr-5",
+    "name": "Verona Driver",
+    "category": "men",
+    "subcategory": "loofers",
+    "price": 32200
+  },
+  {
+    "id": "m-lfr-6",
+    "name": "Atlas Bit",
+    "category": "men",
+    "subcategory": "loofers",
+    "price": 29400
+  },
+  {
+    "id": "m-slp-1",
+    "name": "Hearth Slipper",
+    "category": "men",
+    "subcategory": "slippers",
+    "price": 10900
+  },
+  {
+    "id": "m-slp-2",
+    "name": "Loft Mule",
+    "category": "men",
+    "subcategory": "slippers",
+    "price": 12600
+  },
+  {
+    "id": "m-slp-3",
+    "name": "Cabin Slip",
+    "category": "men",
+    "subcategory": "slippers",
+    "price": 13700
+  },
+  {
+    "id": "m-slp-4",
+    "name": "Suede Lounge",
+    "category": "men",
+    "subcategory": "slippers",
+    "price": 15400
+  },
+  {
+    "id": "m-slp-5",
+    "name": "Hollow Comfort",
+    "category": "men",
+    "subcategory": "slippers",
+    "price": 9800
+  },
+  {
+    "id": "m-slp-6",
+    "name": "Plush Step",
+    "category": "men",
+    "subcategory": "slippers",
+    "price": 11800
+  },
+  {
+    "id": "w-snk-1",
+    "name": "Bloom Pulse",
+    "category": "women",
+    "subcategory": "sneakers",
+    "price": 24900
+  },
+  {
+    "id": "w-snk-2",
+    "name": "Aurora Light",
+    "category": "women",
+    "subcategory": "sneakers",
+    "price": 26600
+  },
+  {
+    "id": "w-snk-3",
+    "name": "Coral Court",
+    "category": "women",
+    "subcategory": "sneakers",
+    "price": 22100
+  },
+  {
+    "id": "w-snk-4",
+    "name": "Lilac Drift",
+    "category": "women",
+    "subcategory": "sneakers",
+    "price": 27700
+  },
+  {
+    "id": "w-snk-5",
+    "name": "Pearl Step",
+    "category": "women",
+    "subcategory": "sneakers",
+    "price": 23800
+  },
+  {
+    "id": "w-snk-6",
+    "name": "Halo Runner",
+    "category": "women",
+    "subcategory": "sneakers",
+    "price": 29400
+  },
+  {
+    "id": "w-fcy-1",
+    "name": "Stiletto Noir",
+    "category": "women",
+    "subcategory": "fancy-shoes",
+    "price": 36100
+  },
+  {
+    "id": "w-fcy-2",
+    "name": "Crystal Heel",
+    "category": "women",
+    "subcategory": "fancy-shoes",
+    "price": 41700
+  },
+  {
+    "id": "w-fcy-3",
+    "name": "Silk Pump",
+    "category": "women",
+    "subcategory": "fancy-shoes",
+    "price": 33300
+  },
+  {
+    "id": "w-fcy-4",
+    "name": "Velvet Charm",
+    "category": "women",
+    "subcategory": "fancy-shoes",
+    "price": 38900
+  },
+  {
+    "id": "w-fcy-5",
+    "name": "Pearl Stiletto",
+    "category": "women",
+    "subcategory": "fancy-shoes",
+    "price": 46200
+  },
+  {
+    "id": "w-fcy-6",
+    "name": "Champagne Heel",
+    "category": "women",
+    "subcategory": "fancy-shoes",
+    "price": 40600
+  },
+  {
+    "id": "w-flt-1",
+    "name": "Iris Ballet",
+    "category": "women",
+    "subcategory": "flats",
+    "price": 18200
+  },
+  {
+    "id": "w-flt-2",
+    "name": "Daisy Slip",
+    "category": "women",
+    "subcategory": "flats",
+    "price": 16500
+  },
+  {
+    "id": "w-flt-3",
+    "name": "Rose Pointe",
+    "category": "women",
+    "subcategory": "flats",
+    "price": 21000
+  },
+  {
+    "id": "w-flt-4",
+    "name": "Petal Loafer",
+    "category": "women",
+    "subcategory": "flats",
+    "price": 19300
+  },
+  {
+    "id": "w-flt-5",
+    "name": "Lily Sandal",
+    "category": "women",
+    "subcategory": "flats",
+    "price": 15400
+  },
+  {
+    "id": "w-flt-6",
+    "name": "Magnolia Mule",
+    "category": "women",
+    "subcategory": "flats",
+    "price": 22100
+  },
+  {
+    "id": "w-jog-1",
+    "name": "Soft Stride",
+    "category": "women",
+    "subcategory": "joggers",
+    "price": 21000
+  },
+  {
+    "id": "w-jog-2",
+    "name": "Glow Runner",
+    "category": "women",
+    "subcategory": "joggers",
+    "price": 22100
+  },
+  {
+    "id": "w-jog-3",
+    "name": "Pulse Court",
+    "category": "women",
+    "subcategory": "joggers",
+    "price": 23800
+  },
+  {
+    "id": "w-jog-4",
+    "name": "Featherlight",
+    "category": "women",
+    "subcategory": "joggers",
+    "price": 19300
+  },
+  {
+    "id": "w-jog-5",
+    "name": "Velvet Lite",
+    "category": "women",
+    "subcategory": "joggers",
+    "price": 23000
+  },
+  {
+    "id": "w-jog-6",
+    "name": "Lush Mesh",
+    "category": "women",
+    "subcategory": "joggers",
+    "price": 24900
+  },
+  {
+    "id": "w-snd-1",
+    "name": "Bay Sandal",
+    "category": "women",
+    "subcategory": "sandals",
+    "price": 13700
+  },
+  {
+    "id": "w-snd-2",
+    "name": "Sun Slide",
+    "category": "women",
+    "subcategory": "sandals",
+    "price": 12600
+  },
+  {
+    "id": "w-snd-3",
+    "name": "Cove Strap",
+    "category": "women",
+    "subcategory": "sandals",
+    "price": 16500
+  },
+  {
+    "id": "w-snd-4",
+    "name": "Lagoon Buckle",
+    "category": "women",
+    "subcategory": "sandals",
+    "price": 18200
+  },
+  {
+    "id": "w-snd-5",
+    "name": "Coral Slide",
+    "category": "women",
+    "subcategory": "sandals",
+    "price": 10900
+  },
+  {
+    "id": "w-snd-6",
+    "name": "Tide Crisscross",
+    "category": "women",
+    "subcategory": "sandals",
+    "price": 15400
+  },
+  {
+    "id": "s-bsk-1",
+    "name": "Slam Dunk Pro",
+    "category": "sports",
+    "subcategory": "basketball",
+    "price": 36100
+  },
+  {
+    "id": "s-bsk-2",
+    "name": "Court King",
+    "category": "sports",
+    "subcategory": "basketball",
+    "price": 41700
+  },
+  {
+    "id": "s-bsk-3",
+    "name": "Hoop Hi-Top",
+    "category": "sports",
+    "subcategory": "basketball",
+    "price": 33300
+  },
+  {
+    "id": "s-bsk-4",
+    "name": "Rim Crusher",
+    "category": "sports",
+    "subcategory": "basketball",
+    "price": 44500
+  },
+  {
+    "id": "s-bsk-5",
+    "name": "Fast Break",
+    "category": "sports",
+    "subcategory": "basketball",
+    "price": 38900
+  },
+  {
+    "id": "s-bsk-6",
+    "name": "Air Strike",
+    "category": "sports",
+    "subcategory": "basketball",
+    "price": 47300
+  },
+  {
+    "id": "s-run-1",
+    "name": "Marathon Mesh",
+    "category": "sports",
+    "subcategory": "running",
+    "price": 30500
+  },
+  {
+    "id": "s-run-2",
+    "name": "Pacer Pro",
+    "category": "sports",
+    "subcategory": "running",
+    "price": 33300
+  },
+  {
+    "id": "s-run-3",
+    "name": "Trail Burst",
+    "category": "sports",
+    "subcategory": "running",
+    "price": 36100
+  },
+  {
+    "id": "s-run-4",
+    "name": "Velocity X",
+    "category": "sports",
+    "subcategory": "running",
+    "price": 38900
+  },
+  {
+    "id": "s-run-5",
+    "name": "Endurance Lite",
+    "category": "sports",
+    "subcategory": "running",
+    "price": 27700
+  },
+  {
+    "id": "s-run-6",
+    "name": "Sprint Edge",
+    "category": "sports",
+    "subcategory": "running",
+    "price": 41700
+  }
+]

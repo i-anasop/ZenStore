@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern Footwear, Crafted For You · Zen Store</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <base href="./">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"></noscript>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<main>
+
+  <section class="hero container">
+    <div class="hero-grid">
+      <div class="hero-content reveal">
+        <span class="hero-eyebrow"><i class="fas fa-bolt"></i> New season</span>
+        <h1>Step into your <span class="accent">next chapter.</span></h1>
+        <div class="hero-actions">
+          <a href="men/" class="btn btn-primary btn-lg">Shop Men <i class="fas fa-arrow-right"></i></a>
+          <a href="women/" class="btn btn-secondary btn-lg">Shop Women</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat"><strong>10k+</strong><span>Customers</span></div>
+          <div class="hero-stat"><strong>500+</strong><span>Styles</span></div>
+          <div class="hero-stat"><strong>4.9★</strong><span>Rating</span></div>
+        </div>
+        <div class="hero-trending" id="hero-trending"></div>
+      </div>
+      <div class="hero-visual reveal">
+        <img src="assets/images/extras/shoe.png" alt="Featured shoe">
+      </div>
+    </div>
+  </section>
+
+  <section class="section container reveal">
+    <div class="features features-compact">
+      <div class="feature"><div class="feature-icon"><i class="fas fa-truck-fast"></i></div><div><strong>Free Shipping</strong></div></div>
+      <div class="feature"><div class="feature-icon"><i class="fas fa-rotate-left"></i></div><div><strong>30-Day Returns</strong></div></div>
+      <div class="feature"><div class="feature-icon"><i class="fas fa-shield-halved"></i></div><div><strong>Secure Checkout</strong></div></div>
+      <div class="feature"><div class="feature-icon"><i class="fas fa-headset"></i></div><div><strong>24/7 Support</strong></div></div>
+    </div>
+  </section>
+
+  <section class="section container">
+    <div class="section-head reveal compact">
+      <h2>Shop by category</h2>
+    </div>
+    <div class="cat-grid">
+      <a href="men/" class="cat-card cat-card-visual reveal">
+        <img src="assets/images/collections/collection-1.jpg" alt="Men's collection">
+        <span class="cat-label">Men <i class="fas fa-arrow-right"></i></span>
+      </a>
+      <a href="women/" class="cat-card cat-card-visual reveal">
+        <img src="assets/images/collections/collection-2.jpg" alt="Women's collection">
+        <span class="cat-label">Women <i class="fas fa-arrow-right"></i></span>
+      </a>
+      <a href="sports/" class="cat-card cat-card-visual reveal">
+        <img src="assets/images/collections/collection-3.jpg" alt="Sports collection">
+        <span class="cat-label">Sports <i class="fas fa-arrow-right"></i></span>
+      </a>
+    </div>
+  </section>
+
+  <section class="section container">
+    <div class="section-head reveal">
+      <h2>Featured</h2>
+      <a href="men/" class="head-link">View all <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="prod-grid" id="featured-grid"></div>
+  </section>
+
+  <section class="section container reveal">
+    <div class="lookbook" id="lookbook-grid"></div>
+  </section>
+
+  <section class="container">
+    <div class="newsletter reveal">
+      <h2>Get early access</h2>
+      <form id="newsletter-form">
+        <input type="email" placeholder="your@email.com" required>
+        <button type="submit" class="btn">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+</main>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/cart.js"></script>
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/orders.js"></script>
+<script src="assets/js/base.js"></script>
+<script>ZEN.initLayout('home');</script>
+<script>
+const grid = document.getElementById('featured-grid');
+const featured = [...ZEN.products].sort(() => Math.random() - 0.5).slice(0, 8);
+grid.innerHTML = featured.map(p => productCardHtml(p)).join('');
+function productCardHtml(p) {
+  const tag = p.oldPrice ? '<span class="prod-tag">Sale</span>' : '';
+  const old = p.oldPrice ? '<small>'+ZEN.fmt(p.oldPrice)+'</small>' : '';
+  return '<a class="prod-card" href="'+ZEN.url('product/?id='+p.id)+'">'+
+    '<div class="prod-thumb">'+tag+'<button class="prod-fav" onclick="event.preventDefault();event.stopPropagation();this.classList.toggle(\'active\');"><i class="fas fa-heart"></i></button><img src="'+ZEN.url(p.image)+'" alt="'+p.name+'"></div>'+
+    '<div class="prod-info"><span class="prod-cat">'+ZEN.cap(p.category)+' · '+ZEN.cap(p.subcategory.replace(/-/g,' '))+'</span>'+
+    '<span class="prod-name">'+p.name+'</span>'+
+    '<div class="prod-row"><span class="prod-price">'+ZEN.fmt(p.price)+old+'</span>'+
+    '<button class="prod-add" onclick="event.preventDefault();event.stopPropagation();ZEN.cartAdd(\''+p.id+'\');"><i class="fas fa-plus"></i></button></div></div></a>';
+}
+// Lookbook (visual grid of trending product images) — 4 tiles to fit 3x2 layout
+const lb = document.getElementById('lookbook-grid');
+if (lb) {
+  const picks = [...ZEN.products].sort(() => Math.random() - 0.5).slice(0, 4);
+  lb.innerHTML = picks.map(p => '<a class="lb-tile" href="'+ZEN.url('product/?id='+p.id)+'"><img src="'+ZEN.url(p.image)+'" alt="'+p.name+'"><span class="lb-overlay"><i class="fas fa-arrow-up-right-from-square"></i></span></a>').join('');
+}
+
+// Hero trending thumbs
+const ht = document.getElementById('hero-trending');
+if (ht) {
+  const thumbs = [...ZEN.products].sort(() => Math.random() - 0.5).slice(0, 4);
+  ht.innerHTML = '<span class="hero-trending-label">Trending</span>' +
+    '<div class="hero-trending-thumbs">' +
+      thumbs.map(p => '<a href="'+ZEN.url('product/?id='+p.id)+'" title="'+p.name+'"><img src="'+ZEN.url(p.image)+'" alt="'+p.name+'"></a>').join('') +
+    '</div>' +
+    '<a class="hero-trending-link" href="'+ZEN.url('men/')+'">Shop now <i class="fas fa-arrow-right"></i></a>';
+}
+
+document.getElementById('newsletter-form').addEventListener('submit', (e) => {
+  e.preventDefault();
+  ZEN.toast('Thanks for subscribing!', 'success');
+  e.target.reset();
+});
+</script>
+</body>
+</html>

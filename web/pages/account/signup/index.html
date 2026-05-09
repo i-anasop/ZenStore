@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account · Zen Store</title>
+  <link rel="icon" type="image/svg+xml" href="../../assets/images/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"></noscript>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
+  <link rel="stylesheet" href="../../assets/css/main.css">
+</head>
+<body>
+<main>
+  <section class="auth-shell">
+    <div class="auth-split">
+      <aside class="auth-aside">
+        <div class="auth-aside-brand"><span class="brand-mark">Z</span><span>Zen Store</span></div>
+        <div class="auth-aside-caption">
+          <span class="tagline">Join Zen</span>
+          <h2>Step into your next chapter.</h2>
+          <p>Create an account to save addresses, track every order, and shop in one click.</p>
+        </div>
+      </aside>
+      <div class="auth-form-pane">
+        <div class="form-card">
+          <h2>Create your account</h2>
+          <p class="subtitle">It only takes a minute.</p>
+          <form id="signup-form" novalidate>
+            <div class="field">
+              <label for="name">Full name</label>
+              <input type="text" id="name" required autocomplete="name" placeholder="Your full name">
+              <span class="err" id="name-err"></span>
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" required autocomplete="email" placeholder="you@example.com">
+              <span class="err" id="email-err"></span>
+            </div>
+            <div class="field">
+              <label for="password">Password</label>
+              <div class="input-with-action">
+                <input type="password" id="password" required minlength="6" autocomplete="new-password" placeholder="At least 6 characters">
+                <button type="button" class="input-action-btn" id="toggle-pw" aria-label="Show password"><i class="fas fa-eye"></i></button>
+              </div>
+              <div class="password-meter"><div class="password-meter-bar" id="pw-bar"></div></div>
+              <span class="field-hint" id="pw-hint">Use 6+ characters with letters and numbers for a stronger password.</span>
+              <span class="err" id="password-err"></span>
+            </div>
+            <label class="checkbox-row"><input type="checkbox" id="terms" required> I agree to the <a href="#" data-info="returns">Terms</a> and <a href="#" data-info="contact">Privacy Policy</a></label>
+            <button type="submit" class="btn btn-primary btn-block btn-lg">Create account</button>
+            <p class="form-foot">Already have an account? <a href="../login/">Sign in</a></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="../../assets/js/data.js"></script>
+<script src="../../assets/js/cart.js"></script>
+<script src="../../assets/js/auth.js"></script>
+<script src="../../assets/js/orders.js"></script>
+<script src="../../assets/js/base.js"></script>
+<script>ZEN.initLayout('');</script>
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const setErr = (id, msg) => { $(id+'-err').textContent = msg || ''; $(id).classList.toggle('invalid', !!msg); $(id).classList.toggle('valid', !msg && $(id).value.trim().length > 0); };
+  $('toggle-pw').addEventListener('click', () => {
+    const i = $('password'); const isPw = i.type === 'password';
+    i.type = isPw ? 'text' : 'password';
+    $('toggle-pw').innerHTML = isPw ? '<i class="fas fa-eye-slash"></i>' : '<i class="fas fa-eye"></i>';
+  });
+  function strength(pw){
+    let s = 0;
+    if (pw.length >= 6) s++;
+    if (pw.length >= 10) s++;
+    if (/[A-Z]/.test(pw)) s++;
+    if (/[0-9]/.test(pw)) s++;
+    if (/[^A-Za-z0-9]/.test(pw)) s++;
+    return s;
+  }
+  $('password').addEventListener('input', () => {
+    const v = $('password').value;
+    const s = strength(v);
+    const bar = $('pw-bar');
+    const pct = Math.min(100, s * 20);
+    bar.style.width = pct + '%';
+    bar.style.background = pct < 40 ? 'var(--c-danger)' : pct < 70 ? '#f59e0b' : '#10b981';
+    $('pw-hint').textContent = pct < 40 ? 'Weak — add more characters' : pct < 70 ? 'Good — try a number or symbol' : 'Strong password';
+  });
+  $('name').addEventListener('blur', () => setErr('name', $('name').value.trim().length >= 2 ? '' : 'Please enter your full name'));
+  $('email').addEventListener('blur', () => setErr('email', emailRe.test($('email').value.trim()) ? '' : 'Enter a valid email address'));
+  $('password').addEventListener('blur', () => setErr('password', $('password').value.length >= 6 ? '' : 'Password must be at least 6 characters'));
+  $('signup-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = $('name').value.trim();
+    const email = $('email').value.trim();
+    const password = $('password').value;
+    let ok = true;
+    if (name.length < 2) { setErr('name', 'Please enter your full name'); ok = false; }
+    if (!emailRe.test(email)) { setErr('email', 'Enter a valid email address'); ok = false; }
+    if (password.length < 6) { setErr('password', 'Password must be at least 6 characters'); ok = false; }
+    if (!$('terms').checked) { ZEN.toast('Please accept the Terms to continue.', 'error'); ok = false; }
+    if (!ok) return;
+    const r = ZEN.signup({ name, email, password });
+    if (!r.ok) { ZEN.toast(r.error, 'error'); setErr('email', r.error); return; }
+    ZEN.toast('Account created. Welcome!', 'success');
+    setTimeout(() => location.href = ZEN.url('account/profile/'), 500);
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+[
+  {
+    "intent": "greeting",
+    "examples": ["hi", "hello", "hey", "good morning", "good evening", "what's up", "howdy"],
+    "response": "Hi there! 👋 I'm your AI support assistant. Ask me about orders, shipping, returns, payments, or anything else I can help with!"
+  },
+  {
+    "intent": "shipping_info",
+    "examples": ["shipping", "delivery", "how long delivery", "when will it arrive", "delivery time", "how long does shipping take", "ship to", "shipping cost", "shipping fee"],
+    "response": "Standard delivery takes **3–5 business days**. Express shipping (1–2 days) is available at checkout. Shipping is free on orders over a set threshold — check the homepage for the current offer."
+  },
+  {
+    "intent": "order_status",
+    "examples": ["where is my order", "track my order", "order status", "track order", "order tracking", "when will my order arrive", "my order hasn't arrived"],
+    "response": "To track your order, please check the confirmation email you received after placing it — it contains a tracking link. If you can't find it, contact support with your order ID."
+  },
+  {
+    "intent": "return_policy",
+    "examples": ["return", "refund", "exchange", "send back", "return policy", "can I return", "how to return", "money back", "want to return"],
+    "response": "We offer a **30-day hassle-free return** policy. Items must be unused and in original packaging. Initiate a return from your account dashboard or contact support with your order ID."
+  },
+  {
+    "intent": "payment_options",
+    "examples": ["payment", "pay", "how to pay", "payment method", "credit card", "debit card", "cash", "cod", "cash on delivery", "easypaisa", "online payment"],
+    "response": "We accept **Credit/Debit cards**, **Cash on Delivery (COD)**, and **EasyPaisa**. All online payments are secured with SSL encryption."
+  },
+  {
+    "intent": "cancel_order",
+    "examples": ["cancel order", "cancel my order", "cancel", "I want to cancel", "stop my order"],
+    "response": "Orders can be cancelled within **1 hour** of placement. Go to your order history in your account, or contact support immediately with your order ID for faster processing."
+  },
+  {
+    "intent": "size_guide",
+    "examples": ["size", "sizing", "what size", "size guide", "size chart", "which size should I get", "fit", "fits", "too small", "too big"],
+    "response": "Please refer to the **Size Guide** on the product page. If you're between sizes, we generally recommend sizing up for comfort. Feel free to ask about a specific product!"
+  },
+  {
+    "intent": "discount_promo",
+    "examples": ["discount", "promo", "promo code", "coupon", "offer", "sale", "deals", "voucher", "code"],
+    "response": "Check the homepage and sale section for current discounts. Subscribe to our newsletter for exclusive promo codes. We also run seasonal sales — follow us on social media to stay updated!"
+  },
+  {
+    "intent": "product_availability",
+    "examples": ["in stock", "available", "out of stock", "do you have", "is it available", "stock"],
+    "response": "All products shown on the site are currently in stock. If a product shows as unavailable, it's temporarily out of stock. You can sign up for restock notifications on the product page."
+  },
+  {
+    "intent": "contact_support",
+    "examples": ["contact", "support", "help", "talk to agent", "human", "speak to someone", "customer service", "email support", "phone number"],
+    "response": "You can reach our support team via:\n- 📧 **Email:** support@store.example\n- 💬 **Live Chat:** Available Mon–Sat, 9 AM – 9 PM\n- 📞 **Phone:** +92-XXX-XXXXXXX\n\nWe typically respond within 2–4 hours."
+  },
+  {
+    "intent": "warranty",
+    "examples": ["warranty", "guarantee", "how long warranty", "product warranty", "defective", "broken", "damaged"],
+    "response": "All our products come with a **6-month manufacturer warranty** covering defects. If you receive a damaged or defective item, contact support within 48 hours of delivery with photos."
+  },
+  {
+    "intent": "account_help",
+    "examples": ["account", "login", "sign in", "sign up", "register", "forgot password", "reset password", "can't login", "my account"],
+    "response": "You can create or log into your account using the user icon in the top navigation. To reset your password, click **'Forgot Password'** on the login page and we'll send you a reset link."
+  },
+  {
+    "intent": "international_shipping",
+    "examples": ["international", "ship abroad", "outside country", "overseas", "worldwide", "global shipping", "do you ship internationally"],
+    "response": "Currently, we only ship **within Pakistan**. International shipping is on our roadmap — subscribe to our newsletter to be notified when it launches!"
+  },
+  {
+    "intent": "farewell",
+    "examples": ["bye", "goodbye", "see you", "thanks", "thank you", "that's all", "no more questions", "done"],
+    "response": "Thank you for reaching out! 😊 If you have any more questions, don't hesitate to ask. Have a great day!"
+  }
+]

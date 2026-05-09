@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product · Zen Store</title>
+  <link rel="icon" type="image/svg+xml" href="../../assets/images/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"></noscript>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
+  <link rel="stylesheet" href="../../assets/css/main.css">
+</head>
+<body>
+<main>
+<section class="container product-detail" id="pd-root"></section>
+</main>
+<script src="../../assets/js/data.js"></script>
+<script src="../../assets/js/cart.js"></script>
+<script src="../../assets/js/auth.js"></script>
+<script src="../../assets/js/orders.js"></script>
+<script src="../../assets/js/base.js"></script>
+<script>ZEN.initLayout('');</script>
+<script>
+const id = new URLSearchParams(location.search).get('id');
+const p = id && ZEN.findProduct(id);
+const root = document.getElementById('pd-root');
+if (!p) {
+  root.innerHTML = '<div class="empty-state" style="grid-column:1/-1"><div class="empty-state-icon"><i class="fas fa-question"></i></div><h3>Product not found</h3><p>The product you\'re looking for is not available.</p><a class="btn btn-primary" href="../">Back to home</a></div>';
+} else {
+  const sizes = [38,39,40,41,42,43,44,45];
+  const old = p.oldPrice ? '<small>'+ZEN.fmt(p.oldPrice)+'</small>' : '';
+  root.innerHTML =
+    '<div class="pd-gallery">' +
+      '<div class="pd-main-img"><img id="pd-main" src="'+ZEN.url(p.image)+'" alt="'+p.name+'"><button class="pd-fav" id="pd-fav" aria-label="Save to wishlist"><i class="far fa-heart"></i></button></div>' +
+    '</div>' +
+    '<div class="pd-info">' +
+      '<span class="pd-cat">'+ZEN.cap(p.category)+' · '+ZEN.cap(p.subcategory.replace(/-/g,' '))+'</span>' +
+      '<h1>'+p.name+'</h1>' +
+      '<div class="pd-rating">'+'★'.repeat(5)+' <span style="color:var(--c-text-muted);margin-left:6px;">'+p.rating+' (124 reviews)</span></div>' +
+      '<div class="pd-price">'+ZEN.fmt(p.price)+old+'</div>' +
+      '<p class="pd-desc">'+p.description+'</p>' +
+      '<div class="pd-section"><h4>Select size (EU)</h4><div class="size-grid" id="size-grid">'+
+        sizes.map((s,i) => '<button data-size="'+s+'"'+(i===2?' class="active"':'')+'>'+s+'</button>').join('') +
+      '</div></div>' +
+      '<div class="pd-actions">' +
+        '<button class="btn btn-primary btn-lg" id="add-to-cart"><i class="fas fa-shopping-bag"></i> Add to cart</button>' +
+        '<button class="btn btn-secondary btn-lg" id="buy-now">Buy now</button>' +
+      '</div>' +
+      '<div class="pd-section" style="margin-top:24px;color:var(--c-text-muted);font-size:.9rem;"><i class="fas fa-truck-fast"></i> Free shipping on orders over Rs 30,000 · <i class="fas fa-rotate-left"></i> 30-day returns</div>' +
+    '</div>';
+  document.title = p.name + ' · Zen Store';
+  let selectedSize = 40;
+  document.querySelectorAll('#size-grid button').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('#size-grid button').forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    selectedSize = +b.dataset.size;
+  }));
+  document.getElementById('pd-fav').addEventListener('click', (e) => {
+    const btn = e.currentTarget;
+    btn.classList.toggle('active');
+    const icon = btn.querySelector('i');
+    icon.classList.toggle('fas');
+    icon.classList.toggle('far');
+    ZEN.toast(btn.classList.contains('active') ? 'Saved to wishlist' : 'Removed from wishlist', 'success');
+  });
+  document.getElementById('add-to-cart').addEventListener('click', () => ZEN.cartAdd(p.id, 1, selectedSize));
+  document.getElementById('buy-now').addEventListener('click', () => { ZEN.cartAdd(p.id, 1, selectedSize); setTimeout(() => location.href = ZEN.url('account/checkout/'), 300); });
+}
+</script>
+</body>
+</html>

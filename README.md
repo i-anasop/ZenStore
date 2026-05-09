@@ -1,6 +1,39 @@
-# Zen Store: Enterprise AI-Integrated eCommerce Solution
+<div align="center">
+  <img src="assets/images/favicon.svg" width="100" height="100" alt="Zen Store Logo">
+  
+  <h3><strong>ZEN STORE</strong></h3>
 
-A high-performance, modular eCommerce platform featuring an integrated NLP-driven customer support ecosystem and human-agent escalation protocols.
+  <h1><strong>Zen Store — eCommerce Intelligence Platform</strong></h1>
+
+  <p><strong>Real-time AI-powered customer support and automated agent escalation for global footwear retail.</strong></p>
+
+  <p>
+    <img src="https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript">
+    <img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI">
+    <img src="https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
+    <img src="https://img.shields.io/badge/NLP_Engine-Transformer-FF69B4?style=for-the-badge" alt="NLP Engine">
+    <img src="https://img.shields.io/badge/GitHub_Pages-Deployed-222222?style=for-the-badge&logo=githubactions&logoColor=white" alt="GitHub Pages">
+    <img src="https://img.shields.io/badge/License-MIT-white?style=for-the-badge" alt="License">
+  </p>
+
+  <hr />
+
+  <table>
+    <tr>
+      <td>🏆</td>
+      <td><strong>Industrial Grade — Phase 1 Project</strong> Built as a high-performance demonstration of AI-integrated eCommerce and automated customer support orchestration.</td>
+    </tr>
+  </table>
+
+  <hr />
+
+  <p>
+    <a href="https://i-anasop.github.io/ZenStore/">Live Demo</a> •
+    <a href="#system-architecture">Documentation</a> •
+    <a href="https://github.com/i-anasop/ZenStore/issues">Report a Bug</a> •
+    <a href="https://github.com/i-anasop/ZenStore/issues">Request a Feature</a>
+  </p>
+</div>
 
 ---
 
@@ -103,16 +136,6 @@ The platform follows a decoupled Frontend-Backend architecture, communicating vi
    ```bash
    python main.py
    ```
-
-### Frontend Deployment
-The distribution is pre-compiled for static hosting. For local development environments:
-```bash
-# Using Python
-python -m http.server 3000
-
-# Using Node.js
-npx serve .
-```
 
 ---
 

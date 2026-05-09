@@ -42,25 +42,37 @@
     return dotProduct; // Vectors are normalized, so dot product = cosine similarity
   };
 
-  const getAIResponse = async (query) => {
-    if (!pipeline) await loadAI();
-
-    const inputVector = (await pipeline(query, { pooling: 'mean', normalize: true })).data;
+  const turboMatch = (input) => {
+    // Greetings
+    if (['hi', 'hello', 'hey', 'sup', 'yo'].some(g => input === g || input.startsWith(g + ' '))) {
+      return "Hello! I'm your Zen Store AI assistant. I'm currently loading my deep intelligence layer, but I can already help you with product info and policies. What can I do for you?";
+    }
     
-    // 1. Semantic Match against FAQ
-    let bestMatch = null;
-    let highestScore = -1;
-
-    for (const item of faqEmbeddings) {
-      const score = cosineSimilarity(inputVector, item.vector);
-      if (score > highestScore) {
-        highestScore = score;
-        bestMatch = item;
-      }
+    // Product Quick-Check
+    const products = window.ZEN_PRODUCTS || [];
+    const found = products.find(p => input.includes(p.name.toLowerCase()) || input.includes(p.category.toLowerCase()));
+    if (found) {
+      return `We have a great selection of ${found.category}! For example, the ${found.name} is very popular right now. You can check it out in our store!`;
     }
 
-    // Threshold for Intelligence
-    if (highestScore > 0.65) return bestMatch.a;
+    // Policy Quick-Check
+    if (input.includes('return') || input.includes('money')) return "We offer a 30-day money-back guarantee on all unworn footwear. No questions asked!";
+    if (input.includes('shipping') || input.includes('delivery')) return "Standard shipping takes 3-5 business days. We provide tracking for all orders.";
+    
+    return null;
+  };
+
+  const getAIResponse = async (query) => {
+    const input = query.toLowerCase().trim();
+    
+    // 1. Turbo Match (Instant)
+    const quickReply = turboMatch(input);
+    if (quickReply) return quickReply;
+
+    // 2. Deep Semantic Match (Requires loading)
+    if (!pipeline) {
+      try { await loadAI(); } catch(e) { return "I'm still waking up my brain. Could you ask me about sneakers or our return policy in the meantime?"; }
+    }
 
     // 2. Fallback to Product Aware Keyword Matching (for speed)
     const input = query.toLowerCase();

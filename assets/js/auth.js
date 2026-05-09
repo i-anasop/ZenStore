@@ -38,7 +38,7 @@
   ZEN.requireAuth = (redirectTo) => {
     if (!ZEN.getUser()) {
       const next = redirectTo || (location.pathname + location.search);
-      location.href = ZEN.url('account/login/?next=' + encodeURIComponent(next));
+      location.href = ZEN.url('pages/account/login/?next=' + encodeURIComponent(next));
       return false;
     }
     return true;

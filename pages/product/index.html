@@ -67,7 +67,7 @@ if (!p) {
     ZEN.toast(btn.classList.contains('active') ? 'Saved to wishlist' : 'Removed from wishlist', 'success');
   });
   document.getElementById('add-to-cart').addEventListener('click', () => ZEN.cartAdd(p.id, 1, selectedSize));
-  document.getElementById('buy-now').addEventListener('click', () => { ZEN.cartAdd(p.id, 1, selectedSize); setTimeout(() => location.href = ZEN.url('account/checkout/'), 300); });
+  document.getElementById('buy-now').addEventListener('click', () => { ZEN.cartAdd(p.id, 1, selectedSize); setTimeout(() => location.href = ZEN.url('pages/account/checkout/'), 300); });
 }
 </script>
 </body>

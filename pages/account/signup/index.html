@@ -110,7 +110,7 @@
     const r = ZEN.signup({ name, email, password });
     if (!r.ok) { ZEN.toast(r.error, 'error'); setErr('email', r.error); return; }
     ZEN.toast('Account created. Welcome!', 'success');
-    setTimeout(() => location.href = ZEN.url('account/profile/'), 500);
+    setTimeout(() => location.href = ZEN.url('pages/account/profile/'), 500);
   });
 })();
 </script>

@@ -82,7 +82,7 @@
     if (!r.ok) { ZEN.toast(r.error, 'error'); setErr('password', r.error); return; }
     ZEN.toast('Welcome back!', 'success');
     const next = new URLSearchParams(location.search).get('next');
-    setTimeout(() => location.href = next || ZEN.url('account/profile/'), 500);
+    setTimeout(() => location.href = next || ZEN.url('pages/account/profile/'), 500);
   });
 })();
 </script>
